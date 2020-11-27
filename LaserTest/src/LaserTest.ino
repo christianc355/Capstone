@@ -39,14 +39,16 @@ int array[] = {1, 0, 1, 0, 0};
 // int array[] = {134, 2342, 5125, 72456, 235654};
 int i;
 
-unsigned int zeroTime = 50;
-unsigned int oneTime = 100;
+unsigned int zeroTime = 500;
+unsigned int oneTime = 1000;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
 unsigned int oneCurrentTime;
 unsigned int oneLastTime;
+int anodeRead;
 
 const int laserPin = A0;
+const int anodePin = A4;
 
 void setup() {
 
@@ -54,12 +56,16 @@ void setup() {
 
   pinMode(laserPin, OUTPUT);
   pinMode(A1, OUTPUT);
+  pinMode(anodePin, INPUT);
 
 }
 
 void loop() {
 
-  analogWrite(A1, 1000);
+  digitalWrite(A1, HIGH);
+
+  anodeRead = analogRead(anodePin);
+  
 
   for(i = 0; i <= 4; i++){
 
@@ -80,8 +86,9 @@ void loop() {
 
 void beamZero() {
 
-  Serial.printf("Array value is ZERO\n");
+  // Serial.printf("Array value is ZERO\n");
   digitalWrite(laserPin, HIGH);
+  Serial.printf("Anode Read: %i\n", anodeRead);
   delay(zeroTime);
   digitalWrite(laserPin, LOW);
   delay(25);
@@ -101,8 +108,9 @@ void beamZero() {
 
 void beamOne() {
 
-  Serial.printf("Array value is ONE\n");
+  //Serial.printf("Array value is ONE\n");
   digitalWrite(laserPin, HIGH);
+  Serial.printf("Anode Read: %i\n", anodeRead);
   delay(oneTime);
   digitalWrite(laserPin, LOW);
   delay(25);
