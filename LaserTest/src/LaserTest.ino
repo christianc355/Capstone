@@ -39,8 +39,8 @@ int array[] = {1, 0, 1, 0, 0};
 // int array[] = {134, 2342, 5125, 72456, 235654};
 int i;
 
-unsigned int zeroTime = 500;
-unsigned int oneTime = 1000;
+unsigned int zeroTime = 5;
+unsigned int oneTime = 10;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
 unsigned int oneCurrentTime;

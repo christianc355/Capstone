@@ -16,22 +16,23 @@ void loop();
 #line 8 "/Users/christianc/Documents/IoT/Capstone/ReceiveTest/src/ReceiveTest.ino"
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
-#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
-#define bitSet(value, bit) ((value) |= (1UL << (bit)))
-#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
-#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+// #define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+// #define bitSet(value, bit) ((value) |= (1UL << (bit)))
+// #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+// #define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
 
 
 int anodeRead; 
-int anodeBit;
-int triggerValue = 700;
+int triggerValue = 100;
 
-unsigned int startTime;
-unsigned int stopTime;
 
 unsigned int zeroTime = 5000;
 unsigned int oneTime = 10000;
-unsigned int timerValue;
+
+unsigned int startTime;
+unsigned int endTime;
+unsigned int duration;
+bool timerState;
 
 const int anodePin = A1;
 
@@ -39,33 +40,28 @@ void setup() {
 
   Serial.begin(9600);
   pinMode(anodePin, INPUT);
-  
 
 }
 
 void loop() {
   
   anodeRead = analogRead(anodePin);
-  timerValue = startTime - stopTime;
-  
-  // Serial.printf("Anode Read: %i\n", anodeRead);
-  // Serial.printf("Start Time: %i Stop Time: %i Timer Value: %i\n", startTime, stopTime, timerValue);
 
-
-  if(anodeRead > triggerValue){
-    startTime = millis();
+  if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
+  startTime = millis();
+  timerState = true;
   }
-  else if (anodeRead < triggerValue){
-    stopTime = millis();
-
-    if(startTime - stopTime < zeroTime){
-      Serial.printf("Zero Time\n");
-      delay(1000);
+  if (timerState && anodeRead < triggerValue){ // if timer is running and anode is not triggered then run
+  endTime = millis();
+  timerState = false;
+  duration = endTime - startTime;
+    if(duration > 3 && duration < 7){
+      Serial.printf("ZERO\n");
     }
-    else if(startTime - stopTime < oneTime){
-      Serial.printf("One Time\n");
-      delay(1000);
+    else if(duration > 8 && duration < 12){
+      Serial.printf("ONE\n");
     }
+  //Serial.printf ("Duration: %i\n", duration);
   }
-}  
 
+}
