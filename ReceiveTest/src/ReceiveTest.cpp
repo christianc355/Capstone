@@ -34,6 +34,10 @@ unsigned int endTime;
 unsigned int duration;
 bool timerState;
 
+int array[5];
+int arrayMax = 5;
+int i;
+
 const int anodePin = A1;
 
 void setup() {
@@ -48,19 +52,19 @@ void loop() {
   anodeRead = analogRead(anodePin);
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
-  startTime = millis();
-  timerState = true;
+    startTime = millis();
+    timerState = true;
   }
   if (timerState && anodeRead < triggerValue){ // if timer is running and anode is not triggered then run
-  endTime = millis();
-  timerState = false;
-  duration = endTime - startTime;
-    if(duration > 3 && duration < 7){
-      Serial.printf("ZERO\n");
-    }
-    else if(duration > 8 && duration < 12){
-      Serial.printf("ONE\n");
-    }
+    endTime = millis();
+    timerState = false;
+    duration = endTime - startTime;
+      if(duration > 3 && duration < 7){
+        Serial.printf("ZERO\n");
+      }
+      else if(duration > 8 && duration < 12){
+        Serial.printf("ONE\n");
+      }
   //Serial.printf ("Duration: %i\n", duration);
   }
 

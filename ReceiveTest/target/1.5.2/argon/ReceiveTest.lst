@@ -19,23 +19,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   7 .module_info_crc 00000004  000d57f8  000d57f8  000257f8  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .debug_info   000cd0d1  00000000  00000000  000257fc  2**0
+  8 .debug_info   000cd118  00000000  00000000  000257fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_abbrev 0000f617  00000000  00000000  000f28cd  2**0
+  9 .debug_abbrev 0000f629  00000000  00000000  000f2914  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0001b954  00000000  00000000  00101ee4  2**0
+ 10 .debug_loc    0001b954  00000000  00000000  00101f3d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_aranges 00002200  00000000  00000000  0011d838  2**0
+ 11 .debug_aranges 00002200  00000000  00000000  0011d891  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000042a0  00000000  00000000  0011fa38  2**0
+ 12 .debug_ranges 000042a0  00000000  00000000  0011fa91  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_macro  00031cec  00000000  00000000  00123cd8  2**0
+ 13 .debug_macro  00031cec  00000000  00000000  00123d31  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_line   00023cf2  00000000  00000000  001559c4  2**0
+ 14 .debug_line   00023cf6  00000000  00000000  00155a1d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    00104964  00000000  00000000  001796b6  2**0
+ 15 .debug_str    0010496d  00000000  00000000  00179713  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_frame  0000c434  00000000  00000000  0027e01c  2**2
+ 16 .debug_frame  0000c434  00000000  00000000  0027e080  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -215,8 +215,8 @@ class SystemClass {
    d40bc:	bd10      	pop	{r4, pc}
 
 000d40be <setup>:
-unsigned int duration;
-bool timerState;
+int arrayMax = 5;
+int i;
 
 const int anodePin = A1;
 
@@ -286,10 +286,10 @@ extern "C" {
 
 inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
    d40f4:	f000 f886 	bl	d4204 <HAL_Timer_Get_Milli_Seconds>
-  startTime = millis();
+    startTime = millis();
    d40f8:	4b17      	ldr	r3, [pc, #92]	; (d4158 <loop+0x80>)
    d40fa:	6018      	str	r0, [r3, #0]
-  timerState = true;
+    timerState = true;
    d40fc:	2301      	movs	r3, #1
    d40fe:	7023      	strb	r3, [r4, #0]
   }
@@ -302,24 +302,24 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
    d410a:	429a      	cmp	r2, r3
    d410c:	da1d      	bge.n	d414a <loop+0x72>
    d410e:	f000 f879 	bl	d4204 <HAL_Timer_Get_Milli_Seconds>
-  endTime = millis();
+    endTime = millis();
    d4112:	4b12      	ldr	r3, [pc, #72]	; (d415c <loop+0x84>)
    d4114:	6018      	str	r0, [r3, #0]
-  timerState = false;
+    timerState = false;
    d4116:	4b0d      	ldr	r3, [pc, #52]	; (d414c <loop+0x74>)
    d4118:	2400      	movs	r4, #0
    d411a:	701c      	strb	r4, [r3, #0]
-  duration = endTime - startTime;
+    duration = endTime - startTime;
    d411c:	4b0e      	ldr	r3, [pc, #56]	; (d4158 <loop+0x80>)
    d411e:	681b      	ldr	r3, [r3, #0]
    d4120:	1ac0      	subs	r0, r0, r3
    d4122:	4b0f      	ldr	r3, [pc, #60]	; (d4160 <loop+0x88>)
    d4124:	6018      	str	r0, [r3, #0]
-    if(duration > 3 && duration < 7){
+      if(duration > 3 && duration < 7){
    d4126:	1f03      	subs	r3, r0, #4
    d4128:	2b02      	cmp	r3, #2
    d412a:	d803      	bhi.n	d4134 <loop+0x5c>
-      Serial.printf("ZERO\n");
+        Serial.printf("ZERO\n");
    d412c:	f000 fe32 	bl	d4d94 <_Z16_fetch_usbserialv>
     size_t println(const __FlashStringHelper*);
 
@@ -329,16 +329,16 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
         return this->printf_impl(false, format, args...);
    d4130:	4a0c      	ldr	r2, [pc, #48]	; (d4164 <loop+0x8c>)
    d4132:	e005      	b.n	d4140 <loop+0x68>
-    }
-    else if(duration > 8 && duration < 12){
+      }
+      else if(duration > 8 && duration < 12){
    d4134:	3809      	subs	r0, #9
    d4136:	2802      	cmp	r0, #2
    d4138:	d807      	bhi.n	d414a <loop+0x72>
-      Serial.printf("ONE\n");
+        Serial.printf("ONE\n");
    d413a:	f000 fe2b 	bl	d4d94 <_Z16_fetch_usbserialv>
    d413e:	4a0a      	ldr	r2, [pc, #40]	; (d4168 <loop+0x90>)
    d4140:	4621      	mov	r1, r4
-    }
+      }
   //Serial.printf ("Duration: %i\n", duration);
   }
 
@@ -413,8 +413,8 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
    d418a:	4620      	mov	r0, r4
    d418c:	4a03      	ldr	r2, [pc, #12]	; (d419c <_GLOBAL__sub_I_SystemMode+0x30>)
    d418e:	4904      	ldr	r1, [pc, #16]	; (d41a0 <_GLOBAL__sub_I_SystemMode+0x34>)
-      Serial.printf("ONE\n");
-    }
+        Serial.printf("ONE\n");
+      }
   //Serial.printf ("Duration: %i\n", duration);
   }
 
