@@ -34,7 +34,7 @@ unsigned int endTime;
 unsigned int duration;
 bool timerState;
 
-int array[5];
+int array[1000];
 int arrayMax = 5;
 int i;
 
@@ -54,18 +54,24 @@ void loop() {
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
     startTime = millis();
     timerState = true;
+    i++;
   }
   if (timerState && anodeRead < triggerValue){ // if timer is running and anode is not triggered then run
     endTime = millis();
     timerState = false;
     duration = endTime - startTime;
       if(duration > 3 && duration < 7){
-        Serial.printf("ZERO\n");
+       // Serial.printf("ZERO\n");
+        array[i] = 0;
+        Serial.printf("ONE  i = %i Array Value: %i\n", i, array[i]);
       }
       else if(duration > 8 && duration < 12){
-        Serial.printf("ONE\n");
+       // Serial.printf("ONE\n");
+        array[i] = 1;
+        Serial.printf("ZERO i = %i Array Value: %i\n", i, array[i]);
       }
   //Serial.printf ("Duration: %i\n", duration);
+  
   }
 
 }
