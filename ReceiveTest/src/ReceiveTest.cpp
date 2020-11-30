@@ -74,8 +74,8 @@ void loop() {
   anodeRead = analogRead(anodePin);
   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
 
-  if (i > 5){
-    i = 1;
+  if (i > 5){ //do not change
+    i = 1; //do not change 
   }
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run

@@ -315,9 +315,9 @@ void loop() {
   anodeRead = analogRead(anodePin);
   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
 
-  if (i > 5){
+  if (i > 5){ //do not change
    d4128:	4c32      	ldr	r4, [pc, #200]	; (d41f4 <loop+0xd0>)
-    i = 1;
+    i = 1; //do not change 
   }
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
@@ -335,7 +335,7 @@ void loop() {
    d4132:	f001 f8c1 	bl	d52b8 <analogRead>
   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
 
-  if (i > 5){
+  if (i > 5){ //do not change
    d4136:	6822      	ldr	r2, [r4, #0]
 
 void loop() {
@@ -346,7 +346,7 @@ void loop() {
    d4138:	4b30      	ldr	r3, [pc, #192]	; (d41fc <loop+0xd8>)
   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
 
-  if (i > 5){
+  if (i > 5){ //do not change
    d413a:	2a05      	cmp	r2, #5
 
 void loop() {
@@ -358,8 +358,8 @@ void loop() {
    d413e:	461e      	mov	r6, r3
   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
 
-  if (i > 5){
-    i = 1;
+  if (i > 5){ //do not change
+    i = 1; //do not change 
    d4140:	bfc4      	itt	gt
    d4142:	2301      	movgt	r3, #1
    d4144:	6023      	strgt	r3, [r4, #0]
