@@ -26,15 +26,17 @@ int anodeRead;
 int triggerValue = 100;
 
 
-unsigned int zeroTime = 5000;
-unsigned int oneTime = 10000;
+unsigned int zeroTime = 5;
+unsigned int oneTime = 10;
 
 unsigned int startTime;
 unsigned int endTime;
 unsigned int duration;
 bool timerState;
 
-int array[1000];
+
+
+int array[5000];
 int arrayMax = 5;
 int i;
 
@@ -50,6 +52,7 @@ void setup() {
 void loop() {
   
   anodeRead = analogRead(anodePin);
+  //Serial.printf("Anode: %i\n", anodeRead);
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
     startTime = millis();

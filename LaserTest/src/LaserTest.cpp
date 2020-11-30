@@ -56,10 +56,9 @@ unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
 unsigned int oneCurrentTime;
 unsigned int oneLastTime;
-int anodeRead;
 
-const int laserPin = A0;
-const int anodePin = A4;
+const int laserPin = A5;
+
 
 void setup() {
 
@@ -67,7 +66,6 @@ void setup() {
 
   pinMode(laserPin, OUTPUT);
   pinMode(A1, OUTPUT);
-  pinMode(anodePin, INPUT);
 
 }
 
@@ -75,7 +73,6 @@ void loop() {
 
   digitalWrite(A1, HIGH);
 
-  anodeRead = analogRead(anodePin);
   
 
   for(i = 0; i <= 4; i++){
@@ -99,21 +96,10 @@ void beamZero() {
 
   // Serial.printf("Array value is ZERO\n");
   digitalWrite(laserPin, HIGH);
-  Serial.printf("Anode Read: %i\n", anodeRead);
+  Serial.printf("ZERO\n");
   delay(zeroTime);
   digitalWrite(laserPin, LOW);
   delay(25);
-    // zeroCurrentTime = millis();
-  // if(zeroCurrentTime - zeroLastTime < zeroTime){
-    
-  //   digitalWrite(laserPin, HIGH);
-
-  // }
-  // else{
-
-  //   digitalWrite(laserPin, LOW);
-
-  // }
 
 }
 
@@ -121,20 +107,9 @@ void beamOne() {
 
   //Serial.printf("Array value is ONE\n");
   digitalWrite(laserPin, HIGH);
-  Serial.printf("Anode Read: %i\n", anodeRead);
+  Serial.printf("ONE\n");
   delay(oneTime);
   digitalWrite(laserPin, LOW);
   delay(25);
-  // oneCurrentTime = millis();
-  // if(oneCurrentTime - oneLastTime < oneTime){
-
-  //   digitalWrite(laserPin, HIGH);
-
-  // }
-  // else{
-
-  //   digitalWrite(laserPin, LOW);
-
-  // }
 
 }

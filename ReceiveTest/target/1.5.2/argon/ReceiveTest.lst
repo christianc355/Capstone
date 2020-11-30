@@ -11,9 +11,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   3 .backup       00000004  2003f400  000d57d0  0000f400  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .data         0000006c  2003d39c  000d57d4  0001d39c  2**2
+  4 .data         0000006c  2003951c  000d57d4  0001951c  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  5 .bss          000013e8  2003d408  2003d408  0002d408  2**2
+  5 .bss          00005268  20039588  20039588  00029588  2**2
                   ALLOC
   6 .module_info_suffix 00000028  000d5840  000d5840  00025840  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
@@ -31,9 +31,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  13 .debug_macro  00031cec  00000000  00000000  00123e78  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_line   00023cf7  00000000  00000000  00155b64  2**0
+ 14 .debug_line   00023cf8  00000000  00000000  00155b64  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    00104977  00000000  00000000  0017985b  2**0
+ 15 .debug_str    00104977  00000000  00000000  0017985c  2**0
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_frame  0000c42c  00000000  00000000  0027e1d4  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -80,10 +80,10 @@ void* module_user_pre_init() {
    d403e:	4801      	ldr	r0, [pc, #4]	; (d4044 <link_dynalib_end+0x28>)
    d4040:	bd08      	pop	{r3, pc}
    d4042:	bf00      	nop
-   d4044:	2003d39c 	.word	0x2003d39c
+   d4044:	2003951c 	.word	0x2003951c
    d4048:	000d57d4 	.word	0x000d57d4
-   d404c:	2003d408 	.word	0x2003d408
-   d4050:	2003d408 	.word	0x2003d408
+   d404c:	20039588 	.word	0x20039588
+   d4050:	20039588 	.word	0x20039588
    d4054:	2003e7f0 	.word	0x2003e7f0
 
 000d4058 <module_user_init>:
@@ -250,6 +250,7 @@ void loop() {
   
   anodeRead = analogRead(anodePin);
    d40da:	2012      	movs	r0, #18
+  //Serial.printf("Anode: %i\n", anodeRead);
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
    d40dc:	4c27      	ldr	r4, [pc, #156]	; (d417c <loop+0xa4>)
@@ -261,6 +262,7 @@ void loop() {
   anodeRead = analogRead(anodePin);
    d40de:	f000 ffa8 	bl	d5032 <analogRead>
    d40e2:	4b27      	ldr	r3, [pc, #156]	; (d4180 <loop+0xa8>)
+  //Serial.printf("Anode: %i\n", anodeRead);
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
    d40e4:	7822      	ldrb	r2, [r4, #0]
@@ -272,6 +274,7 @@ void loop() {
   anodeRead = analogRead(anodePin);
    d40e6:	6018      	str	r0, [r3, #0]
    d40e8:	461d      	mov	r5, r3
+  //Serial.printf("Anode: %i\n", anodeRead);
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
    d40ea:	b96a      	cbnz	r2, d4108 <loop+0x30>
@@ -291,9 +294,9 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
     timerState = true;
     i++;
    d40fa:	4a24      	ldr	r2, [pc, #144]	; (d418c <loop+0xb4>)
-void loop() {
   
   anodeRead = analogRead(anodePin);
+  //Serial.printf("Anode: %i\n", anodeRead);
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
     startTime = millis();
@@ -381,14 +384,14 @@ void loop() {
    d4176:	b002      	add	sp, #8
    d4178:	bd70      	pop	{r4, r5, r6, pc}
    d417a:	bf00      	nop
-   d417c:	2003d41c 	.word	0x2003d41c
-   d4180:	2003d414 	.word	0x2003d414
-   d4184:	2003d39c 	.word	0x2003d39c
+   d417c:	2003959c 	.word	0x2003959c
+   d4180:	20039594 	.word	0x20039594
+   d4184:	2003951c 	.word	0x2003951c
    d4188:	2003e3cc 	.word	0x2003e3cc
-   d418c:	2003d40c 	.word	0x2003d40c
-   d4190:	2003d410 	.word	0x2003d410
-   d4194:	2003d418 	.word	0x2003d418
-   d4198:	2003d42c 	.word	0x2003d42c
+   d418c:	2003958c 	.word	0x2003958c
+   d4190:	20039590 	.word	0x20039590
+   d4194:	20039598 	.word	0x20039598
+   d4198:	200395ac 	.word	0x200395ac
    d419c:	000d546c 	.word	0x000d546c
    d41a0:	000d5489 	.word	0x000d5489
 
@@ -464,8 +467,8 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 
 SYSTEM_MODE(SEMI_AUTOMATIC);
    d41cc:	f000 bf88 	b.w	d50e0 <__aeabi_atexit>
-   d41d0:	2003d420 	.word	0x2003d420
-   d41d4:	2003d408 	.word	0x2003d408
+   d41d0:	200395a0 	.word	0x200395a0
+   d41d4:	20039588 	.word	0x20039588
    d41d8:	000d40af 	.word	0x000d40af
 
 000d41dc <os_thread_is_current>:
@@ -1204,7 +1207,7 @@ private:
 RecursiveMutex WiringBleLock::mutex_;
    d457c:	f000 bdb0 	b.w	d50e0 <__aeabi_atexit>
    d4580:	2003e3d0 	.word	0x2003e3d0
-   d4584:	2003d408 	.word	0x2003d408
+   d4584:	20039588 	.word	0x20039588
    d4588:	000d4555 	.word	0x000d4555
 
 000d458c <_ZNSt14_Function_baseD1Ev>:
@@ -2221,7 +2224,7 @@ MeshClass Mesh;
    d48fc:	2003e3e0 	.word	0x2003e3e0
    d4900:	000d5638 	.word	0x000d5638
    d4904:	000d5604 	.word	0x000d5604
-   d4908:	2003d408 	.word	0x2003d408
+   d4908:	20039588 	.word	0x20039588
    d490c:	000d48a9 	.word	0x000d48a9
 
 000d4910 <_ZN5spark12NetworkClass7connectEj>:
@@ -2879,7 +2882,7 @@ RGBClass RGB;
    d4b8e:	f000 baa7 	b.w	d50e0 <__aeabi_atexit>
    d4b92:	bf00      	nop
    d4b94:	2003e5bc 	.word	0x2003e5bc
-   d4b98:	2003d408 	.word	0x2003d408
+   d4b98:	20039588 	.word	0x20039588
    d4b9c:	000d4b77 	.word	0x000d4b77
 
 000d4ba0 <_ZN8SPIClassC1E17HAL_SPI_Interface>:
@@ -2985,7 +2988,7 @@ SystemClass System;
    d4bde:	f000 ba7f 	b.w	d50e0 <__aeabi_atexit>
    d4be2:	bf00      	nop
    d4be4:	2003e5cc 	.word	0x2003e5cc
-   d4be8:	2003d408 	.word	0x2003d408
+   d4be8:	20039588 	.word	0x20039588
    d4bec:	000d40af 	.word	0x000d40af
 
 000d4bf0 <_GLOBAL__sub_I_TIME_FORMAT_DEFAULT>:
@@ -3001,7 +3004,7 @@ const char* TimeClass::format_spec = TIME_FORMAT_DEFAULT;
    d4bf6:	601a      	str	r2, [r3, #0]
    d4bf8:	4770      	bx	lr
    d4bfa:	bf00      	nop
-   d4bfc:	2003d3a0 	.word	0x2003d3a0
+   d4bfc:	20039520 	.word	0x20039520
    d4c00:	2003e5d8 	.word	0x2003e5d8
 
 000d4c04 <_ZN11USARTSerialD1Ev>:
@@ -3237,7 +3240,7 @@ USARTSerial& __fetch_global_Serial1()
    d4cf4:	2003e678 	.word	0x2003e678
    d4cf8:	2003e5f0 	.word	0x2003e5f0
    d4cfc:	2003e5dc 	.word	0x2003e5dc
-   d4d00:	2003d408 	.word	0x2003d408
+   d4d00:	20039588 	.word	0x20039588
    d4d04:	000d4c05 	.word	0x000d4c05
 
 000d4d08 <_ZN9USBSerial14blockOnOverrunEb>:
@@ -3496,7 +3499,7 @@ USBSerial& _fetch_usbserial()
    d4e06:	bd30      	pop	{r4, r5, pc}
    d4e08:	2003e6fc 	.word	0x2003e6fc
    d4e0c:	2003e700 	.word	0x2003e700
-   d4e10:	2003d408 	.word	0x2003d408
+   d4e10:	20039588 	.word	0x20039588
    d4e14:	000d4d0d 	.word	0x000d4d0d
 
 000d4e18 <_ZN5spark9WiFiClass5readyEv>:
@@ -4130,7 +4133,7 @@ TwoWire& __fetch_global_Wire()
    d50ce:	bd30      	pop	{r4, r5, pc}
    d50d0:	2003e734 	.word	0x2003e734
    d50d4:	2003e738 	.word	0x2003e738
-   d50d8:	2003d408 	.word	0x2003d408
+   d50d8:	20039588 	.word	0x20039588
    d50dc:	000d461d 	.word	0x000d461d
 
 000d50e0 <__aeabi_atexit>:
@@ -4533,7 +4536,7 @@ TwoWire& __fetch_global_Wire()
    d543e:	611d      	str	r5, [r3, #16]
    d5440:	615a      	str	r2, [r3, #20]
    d5442:	bd38      	pop	{r3, r4, r5, pc}
-   d5444:	2003d404 	.word	0x2003d404
+   d5444:	20039584 	.word	0x20039584
 
 000d5448 <strlen>:
    d5448:	4603      	mov	r3, r0
