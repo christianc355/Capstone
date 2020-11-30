@@ -19,6 +19,7 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 
 #include <OneButton.h>
 
+
 const int anodePin = A1;
 const int buttonPin = D5;
 
@@ -40,11 +41,19 @@ unsigned int endTime;
 unsigned int duration;
 bool timerState;
 
-int array[5000];
+int array[100];
 int arrayMax = 5;
 int i;
 
+int bitZero; //maybe make these bools 
+int bitOne; 
+int bitTwo;
+int bitThree;
+int bitFour;
+int n;
+
 bool buttonState;
+bool printState;
 
 void setup() {
 
@@ -68,7 +77,7 @@ void loop() {
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
     startTime = millis();
     timerState = true;
-    i++;
+    i++; //sets i = to 1 right away
   }
 
   if (timerState && anodeRead < triggerValue){ // if timer is running and anode is not triggered then run
@@ -89,6 +98,20 @@ void loop() {
       Serial.printf("ONE  i = %i Array Value: %i\n", i, array[i]);
     }
   }
+
+    bitZero = array[1];
+    bitOne = array[2];
+    bitTwo = array[3];
+    bitThree = array[4];
+    bitFour = array[5];
+
+    if(bitZero == 0 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 1){
+       // Serial.printf("Yellow button\n");
+    }
+    else if(bitZero == 1 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
+      //  Serial.printf("Blue button\n");
+    }
+
 }
 
 void receiveClick() {
