@@ -9,6 +9,7 @@
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
 #include <OneButton.h>
+#include <Adafruit_BME280.h>
 
 
 const int laserPin = A5;
@@ -17,6 +18,8 @@ const int extraButtonPin = D6;
 
 OneButton button1(buttonPin, false, false);
 OneButton button2(extraButtonPin, false, false);
+Adafruit_BME280 bme;
+
 
 int array[] = {1, 0, 1, 0, 0};
 int extraArray[] = {0, 1, 0, 1, 1};
@@ -33,6 +36,7 @@ unsigned int oneLastTime;
 bool buttonState;
 bool extraButtonState;
 
+float temp;
 
 
 void setup() {
@@ -45,7 +49,10 @@ void setup() {
   pinMode(A1, OUTPUT); //used for testing 
   
   button1.attachClick(click1);
+  button1.attachLongPressStart(longPressStart1);
+  button1.attachLongPressStop(longPressStop1);
   button1.setClickTicks(250);
+
   button2.attachClick(click2);
   button2.setClickTicks(250);
 
@@ -56,7 +63,7 @@ void loop() {
   button1.tick();
   button2.tick();
   digitalWrite(A1, HIGH);
-  Serial.printf("Button State: %i\n", buttonState);
+  //Serial.printf("Button State: %i\n", buttonState);
 
   
   if(buttonState){
@@ -107,7 +114,7 @@ void beamZero() {
 
   // Serial.printf("Array value is ZERO\n");
   digitalWrite(laserPin, HIGH);
-  Serial.printf("ZERO\n");
+  //Serial.printf("ZERO\n");
   delay(zeroTime);
   digitalWrite(laserPin, LOW);
   delay(25);
@@ -118,7 +125,7 @@ void beamOne() {
 
   //Serial.printf("Array value is ONE\n");
   digitalWrite(laserPin, HIGH);
-  Serial.printf("ONE\n");
+  //Serial.printf("ONE\n");
   delay(oneTime);
   digitalWrite(laserPin, LOW);
   delay(25);
@@ -134,5 +141,17 @@ void click1(){
 void click2(){
 
   extraButtonState = !extraButtonState;
+
+}
+
+void longPressStart1() {
+
+  Serial.println("Button 1 longPress start");
+
+} 
+
+void longPressStop1() {
+
+  Serial.println("Button 1 longPress stop");
 
 }
