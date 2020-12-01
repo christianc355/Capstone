@@ -1,3 +1,5 @@
+
+
 /*
  * Project ReceiveTest
  * Description: LiFi Receiver
@@ -9,12 +11,10 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 
 #include <OneButton.h>
 
-
-const int anodePin = A1;
+const int anodePin = A5;
 const int buttonPin = D5;
 
 OneButton receiveButton(buttonPin, false, false);
-
 // #define bitRead(value, bit) (((value) >> (bit)) & 0x01)
 // #define bitSet(value, bit) ((value) |= (1UL << (bit)))
 // #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
@@ -22,50 +22,45 @@ OneButton receiveButton(buttonPin, false, false);
 
 int anodeRead; 
 int triggerValue = 10;
-
 unsigned int zeroTime = 5;
 unsigned int oneTime = 10;
-
 unsigned int startTime;
 unsigned int endTime;
 unsigned int duration;
 bool timerState;
-
 int array[100];
 int arrayMax = 5;
-int i;
-
+int i = 0;
 int bitZero; //maybe make these bools 
 int bitOne; 
 int bitTwo;
 int bitThree;
 int bitFour;
 int n;
-
 bool buttonState;
-bool printState;
+bool printState = false;
 
 void setup() {
 
   Serial.begin(9600);
   pinMode(anodePin, INPUT);
   pinMode(buttonPin, INPUT_PULLDOWN);
-
+  pinMode(D7, OUTPUT); //for testing only
   receiveButton.attachClick(receiveClick);
   receiveButton.setClickTicks(250);
-
+  delay(1000); //set up time
+  Serial.printf("System Ready...");
 
 }
-
 void loop() {
 
   receiveButton.tick();
   
   anodeRead = analogRead(anodePin);
-  //Serial.printf("Anode: %i\n", anodeRead); //used for testing
-
+   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
+  
   if (i > 5){ //do not change
-    i = 1; //do not change 
+   i = 1; //do not change 
   }
 
   if (!timerState && anodeRead > triggerValue){ //if timer is not running and anode is triggered then run
@@ -75,19 +70,15 @@ void loop() {
   }
 
   if (timerState && anodeRead < triggerValue){ // if timer is running and anode is not triggered then run
-   
     endTime = millis();
     timerState = false;
     duration = endTime - startTime;
 
     if(duration > 3 && duration < 7){
-
       array[i] = 0;
       Serial.printf("ZERO i = %i Array Value: %i\n", i, array[i]);
-
     }
     else if(duration > 8 && duration < 12){
-
       array[i] = 1;
       Serial.printf("ONE  i = %i Array Value: %i\n", i, array[i]);
     }
@@ -99,14 +90,16 @@ void loop() {
     bitThree = array[4];
     bitFour = array[5];
 
-    if(bitZero == 0 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 1){
-       // Serial.printf("Yellow button\n");
-    }
-    else if(bitZero == 1 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
-      //  Serial.printf("Blue button\n");
-    }
-
+  if(bitZero == 0 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 1){
+    Serial.printf("Yellow button\n");
+    analogWrite(D7, 50); //for testing only
+  }
+  else if(bitZero == 1 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
+    Serial.printf("Blue button\n");
+    analogWrite(D7, 200); //for testing only
+  }
 }
+
 
 void receiveClick() {
 
