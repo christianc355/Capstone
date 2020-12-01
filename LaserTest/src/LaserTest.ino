@@ -38,15 +38,21 @@ bool extraButtonState;
 
 float temp;
 
+String Temp;
+char currentTemp[9];
+
 
 void setup() {
 
   Serial.begin(9600);
 
+  bme.begin(0x76);
+
   pinMode(laserPin, OUTPUT);
   pinMode(buttonPin, INPUT_PULLDOWN);
   pinMode(extraButtonPin, INPUT_PULLDOWN);
   pinMode(A1, OUTPUT); //used for testing 
+  pinMode(D7, OUTPUT); //used for testing
   
   button1.attachClick(click1);
   button1.attachLongPressStart(longPressStart1);
@@ -64,6 +70,8 @@ void loop() {
   button2.tick();
   digitalWrite(A1, HIGH);
   //Serial.printf("Button State: %i\n", buttonState);
+
+  temp = ((bme.readTemperature()*9/5)+32);
 
   
   if(buttonState){
@@ -147,11 +155,15 @@ void click2(){
 void longPressStart1() {
 
   Serial.println("Button 1 longPress start");
+  analogWrite(D7, 200);
+  Serial.printf("Temperature: %f\n", temp);
+  
 
 } 
 
 void longPressStop1() {
 
   Serial.println("Button 1 longPress stop");
+  analogWrite(D7, 0);
 
 }
