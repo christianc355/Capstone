@@ -11,9 +11,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   3 .backup       00000004  2003f400  000d5b90  0000f400  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  4 .data         0000006c  2003e128  000d5b94  0001e128  2**2
+  4 .data         0000006c  2003e2a0  000d5b94  0001e2a0  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  5 .bss          0000065c  2003e194  2003e194  0002e194  2**2
+  5 .bss          000004e4  2003e30c  2003e30c  0002e30c  2**2
                   ALLOC
   6 .module_info_suffix 00000028  000d5c00  000d5c00  00025c00  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
@@ -80,10 +80,10 @@ void* module_user_pre_init() {
    d403e:	4801      	ldr	r0, [pc, #4]	; (d4044 <link_dynalib_end+0x28>)
    d4040:	bd08      	pop	{r3, pc}
    d4042:	bf00      	nop
-   d4044:	2003e128 	.word	0x2003e128
+   d4044:	2003e2a0 	.word	0x2003e2a0
    d4048:	000d5b94 	.word	0x000d5b94
-   d404c:	2003e194 	.word	0x2003e194
-   d4050:	2003e194 	.word	0x2003e194
+   d404c:	2003e30c 	.word	0x2003e30c
+   d4050:	2003e30c 	.word	0x2003e30c
    d4054:	2003e7f0 	.word	0x2003e7f0
 
 000d4058 <module_user_init>:
@@ -188,7 +188,7 @@ void __cxa_guard_release (__guard *g) {*(char *)g = 1;};
 	...
 
 000d40b0 <_Z12receiveClickv>:
-    analogWrite(D7, 200); //for testing only
+    analogWrite(D7, 255); //for testing only
   }
 }
 
@@ -213,6 +213,7 @@ void receiveClick() {
    d40c2:	4a04      	ldr	r2, [pc, #16]	; (d40d4 <_Z12receiveClickv+0x24>)
    d40c4:	2100      	movs	r1, #0
 
+}
    d40c6:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
    d40ca:	f000 be9e 	b.w	d4e0a <_ZN5Print11printf_implEbPKcz>
    d40ce:	bf00      	nop
@@ -491,8 +492,8 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
    d421e:	4631      	mov	r1, r6
    d4220:	4a1d      	ldr	r2, [pc, #116]	; (d4298 <loop+0x154>)
    d4222:	f000 fdf2 	bl	d4e0a <_ZN5Print11printf_implEbPKcz>
-    analogWrite(D7, 50); //for testing only
-   d4226:	2132      	movs	r1, #50	; 0x32
+    analogWrite(D7, 20); //for testing only
+   d4226:	2114      	movs	r1, #20
    d4228:	e00d      	b.n	d4246 <loop+0x102>
   }
   else if(bitZero == 1 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
@@ -508,19 +509,19 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
    d423c:	4621      	mov	r1, r4
    d423e:	4a17      	ldr	r2, [pc, #92]	; (d429c <loop+0x158>)
    d4240:	f000 fde3 	bl	d4e0a <_ZN5Print11printf_implEbPKcz>
-    analogWrite(D7, 200); //for testing only
-   d4244:	21c8      	movs	r1, #200	; 0xc8
+    analogWrite(D7, 255); //for testing only
+   d4244:	21ff      	movs	r1, #255	; 0xff
    d4246:	2007      	movs	r0, #7
   }
 }
    d4248:	b002      	add	sp, #8
    d424a:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
     Serial.printf("Yellow button\n");
-    analogWrite(D7, 50); //for testing only
+    analogWrite(D7, 20); //for testing only
   }
   else if(bitZero == 1 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
     Serial.printf("Blue button\n");
-    analogWrite(D7, 200); //for testing only
+    analogWrite(D7, 255); //for testing only
    d424e:	f001 b89e 	b.w	d538e <_Z11analogWritetm>
   }
 }
@@ -530,10 +531,10 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
    d4258:	2003e348 	.word	0x2003e348
    d425c:	2003e3b0 	.word	0x2003e3b0
    d4260:	2003e3b8 	.word	0x2003e3b8
-   d4264:	2003e19c 	.word	0x2003e19c
-   d4268:	2003e128 	.word	0x2003e128
+   d4264:	2003e314 	.word	0x2003e314
+   d4268:	2003e2a0 	.word	0x2003e2a0
    d426c:	2003e3c8 	.word	0x2003e3c8
-   d4270:	2003e1a0 	.word	0x2003e1a0
+   d4270:	2003e318 	.word	0x2003e318
    d4274:	2003e344 	.word	0x2003e344
    d4278:	2003e340 	.word	0x2003e340
    d427c:	000d580a 	.word	0x000d580a
@@ -542,7 +543,7 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
    d4288:	2003e330 	.word	0x2003e330
    d428c:	2003e3b4 	.word	0x2003e3b4
    d4290:	2003e3bc 	.word	0x2003e3bc
-   d4294:	2003e198 	.word	0x2003e198
+   d4294:	2003e310 	.word	0x2003e310
    d4298:	000d5844 	.word	0x000d5844
    d429c:	000d5853 	.word	0x000d5853
 
@@ -552,6 +553,7 @@ void receiveClick() {
   buttonState = !buttonState;
   Serial.printf("Button State: %i\n", buttonState);
 
+}
    d42a0:	b570      	push	{r4, r5, r6, lr}
 
 class SystemSleepResult {
@@ -637,6 +639,7 @@ void receiveClick() {
   buttonState = !buttonState;
   Serial.printf("Button State: %i\n", buttonState);
 
+}
    d42d0:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
 #include <OneButton.h>
 
@@ -646,7 +649,7 @@ const int buttonPin = D5;
 OneButton receiveButton(buttonPin, false, false);
    d42d4:	f000 b808 	b.w	d42e8 <_ZN9OneButtonC1Eibb>
    d42d8:	2003e334 	.word	0x2003e334
-   d42dc:	2003e194 	.word	0x2003e194
+   d42dc:	2003e30c 	.word	0x2003e30c
    d42e0:	000d40d9 	.word	0x000d40d9
    d42e4:	2003e348 	.word	0x2003e348
 
@@ -1889,7 +1892,7 @@ private:
 RecursiveMutex WiringBleLock::mutex_;
    d4884:	f000 bdea 	b.w	d545c <__aeabi_atexit>
    d4888:	2003e3d0 	.word	0x2003e3d0
-   d488c:	2003e194 	.word	0x2003e194
+   d488c:	2003e30c 	.word	0x2003e30c
    d4890:	000d485b 	.word	0x000d485b
 
 000d4894 <_ZNSt14_Function_baseD1Ev>:
@@ -2906,7 +2909,7 @@ MeshClass Mesh;
    d4c04:	2003e3e0 	.word	0x2003e3e0
    d4c08:	000d59f0 	.word	0x000d59f0
    d4c0c:	000d59bc 	.word	0x000d59bc
-   d4c10:	2003e194 	.word	0x2003e194
+   d4c10:	2003e30c 	.word	0x2003e30c
    d4c14:	000d4bb1 	.word	0x000d4bb1
 
 000d4c18 <_ZN5spark12NetworkClass7connectEj>:
@@ -3564,7 +3567,7 @@ RGBClass RGB;
    d4e96:	f000 bae1 	b.w	d545c <__aeabi_atexit>
    d4e9a:	bf00      	nop
    d4e9c:	2003e5bc 	.word	0x2003e5bc
-   d4ea0:	2003e194 	.word	0x2003e194
+   d4ea0:	2003e30c 	.word	0x2003e30c
    d4ea4:	000d4e7f 	.word	0x000d4e7f
 
 000d4ea8 <_ZN8SPIClassC1E17HAL_SPI_Interface>:
@@ -3670,7 +3673,7 @@ SystemClass System;
    d4ee6:	f000 bab9 	b.w	d545c <__aeabi_atexit>
    d4eea:	bf00      	nop
    d4eec:	2003e5cc 	.word	0x2003e5cc
-   d4ef0:	2003e194 	.word	0x2003e194
+   d4ef0:	2003e30c 	.word	0x2003e30c
    d4ef4:	000d40d9 	.word	0x000d40d9
 
 000d4ef8 <_GLOBAL__sub_I_TIME_FORMAT_DEFAULT>:
@@ -3686,7 +3689,7 @@ const char* TimeClass::format_spec = TIME_FORMAT_DEFAULT;
    d4efe:	601a      	str	r2, [r3, #0]
    d4f00:	4770      	bx	lr
    d4f02:	bf00      	nop
-   d4f04:	2003e12c 	.word	0x2003e12c
+   d4f04:	2003e2a4 	.word	0x2003e2a4
    d4f08:	2003e5d8 	.word	0x2003e5d8
 
 000d4f0c <_ZN11USARTSerialD1Ev>:
@@ -3922,7 +3925,7 @@ USARTSerial& __fetch_global_Serial1()
    d4ffc:	2003e678 	.word	0x2003e678
    d5000:	2003e5f0 	.word	0x2003e5f0
    d5004:	2003e5dc 	.word	0x2003e5dc
-   d5008:	2003e194 	.word	0x2003e194
+   d5008:	2003e30c 	.word	0x2003e30c
    d500c:	000d4f0d 	.word	0x000d4f0d
 
 000d5010 <_ZN9USBSerial14blockOnOverrunEb>:
@@ -4181,7 +4184,7 @@ USBSerial& _fetch_usbserial()
    d510e:	bd30      	pop	{r4, r5, pc}
    d5110:	2003e6fc 	.word	0x2003e6fc
    d5114:	2003e700 	.word	0x2003e700
-   d5118:	2003e194 	.word	0x2003e194
+   d5118:	2003e30c 	.word	0x2003e30c
    d511c:	000d5015 	.word	0x000d5015
 
 000d5120 <_ZN5spark9WiFiClass5readyEv>:
@@ -4935,7 +4938,7 @@ TwoWire& __fetch_global_Wire()
    d544a:	bd30      	pop	{r4, r5, pc}
    d544c:	2003e734 	.word	0x2003e734
    d5450:	2003e738 	.word	0x2003e738
-   d5454:	2003e194 	.word	0x2003e194
+   d5454:	2003e30c 	.word	0x2003e30c
    d5458:	000d4925 	.word	0x000d4925
 
 000d545c <__aeabi_atexit>:
@@ -5338,7 +5341,7 @@ TwoWire& __fetch_global_Wire()
    d57ba:	611d      	str	r5, [r3, #16]
    d57bc:	615a      	str	r2, [r3, #20]
    d57be:	bd38      	pop	{r3, r4, r5, pc}
-   d57c0:	2003e190 	.word	0x2003e190
+   d57c0:	2003e308 	.word	0x2003e308
 
 000d57c4 <strlen>:
    d57c4:	4603      	mov	r3, r0
