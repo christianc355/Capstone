@@ -14,12 +14,13 @@
 
 void setup();
 void loop();
-void beamZero();
-void beamOne();
+void sendAscii(byte send_array[8]);
 void click1();
 void click2();
 void longPressStart1();
 void longPressStop1();
+void beamZero();
+void beamOne();
 #line 9 "/Users/christianc/Documents/IoT/Capstone/LaserTest/src/LaserTest.ino"
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
@@ -36,13 +37,9 @@ OneButton button2(extraButtonPin, false, false);
 Adafruit_BME280 bme;
 
 
-int array[] = {1, 0, 1, 0, 0};
-int extraArray[] = {0, 1, 0, 1, 1};
-// int array[] = {134, 2342, 5125, 72456, 235654};
-int i;
-
-unsigned int zeroTime = 5;
-unsigned int oneTime = 10;
+unsigned int zeroTime = 1000;
+unsigned int oneTime = 2000;
+unsigned int offDelay = 500;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
 unsigned int oneCurrentTime;
@@ -51,11 +48,12 @@ unsigned int oneLastTime;
 bool buttonState;
 bool extraButtonState;
 
-float temp;
-
-String Temp;
-char currentTemp[9];
-
+String temp;
+char temp_array[5];
+byte data[8];
+int i;
+int u;
+int n;
 
 void setup() {
 
@@ -81,79 +79,35 @@ void setup() {
 
 void loop() {
 
-  button1.tick();
-  button2.tick();
-  digitalWrite(A1, HIGH);
-  //Serial.printf("Button State: %i\n", buttonState);
+  temp = String(bme.readTemperature());
 
-  temp = ((bme.readTemperature()*9/5)+32);
+  temp.toCharArray(temp_array, 5);
 
+  for(i = 0; i < 8; i++){
+    data[i] = temp_array[n] >> i && 0x01;
+
+  }
+  n++;
+  Serial.printf("\ntemp_array: %s data: %i i: %i u: %i n: %i\n", temp_array, data, i, u, n);
+  sendAscii(data);
+}
+
+void sendAscii(byte send_array[8]){
+  for(i = 0; i < 8; i++){ 
+      // send_array[u] = 0 == 1;
+
+      if(send_array[i] == 0){ //laser 
+      beamZero(); 
+      Serial.printf("Zero");
+      }
+      else if(send_array[i] == 1){
+      beamOne();
+      Serial.printf("One");
+      }
+  }
+}
   
-  if(buttonState){
-    for(i = 0; i <= 4; i++){
 
-      if(array[i] == 0){
-
-        beamZero();
-        
-      }
-      else if(array[i] == 1){
-
-        beamOne();
-
-      }
-
-      if(i < 4){
-
-        buttonState = false;
-
-      }
-    }
-  }
-  if(extraButtonState){
-    for(i = 0; i <= 4; i++){
-
-      if(extraArray[i] == 0){
-
-        beamZero();
-        
-      }
-      else if(extraArray[i] == 1){
-
-        beamOne();
-
-      }
-
-      if(i < 4){
-
-        extraButtonState = false;
-
-      }
-    }
-  }
-}
-
-void beamZero() {
-
-  // Serial.printf("Array value is ZERO\n");
-  digitalWrite(laserPin, HIGH);
-  //Serial.printf("ZERO\n");
-  delay(zeroTime);
-  digitalWrite(laserPin, LOW);
-  delay(25);
-
-}
-
-void beamOne() {
-
-  //Serial.printf("Array value is ONE\n");
-  digitalWrite(laserPin, HIGH);
-  //Serial.printf("ONE\n");
-  delay(oneTime);
-  digitalWrite(laserPin, LOW);
-  delay(25);
-
-}
 
 void click1(){
 
@@ -180,5 +134,27 @@ void longPressStop1() {
 
   Serial.println("Button 1 longPress stop");
   analogWrite(D7, 0);
+
+}
+
+void beamZero() {
+
+  // Serial.printf("Array value is ZERO\n");
+  digitalWrite(laserPin, HIGH);
+  //Serial.printf("ZERO\n");
+  delay(zeroTime);
+  digitalWrite(laserPin, LOW);
+  delay(offDelay);
+
+}
+
+void beamOne() {
+
+  //Serial.printf("Array value is ONE\n");
+  digitalWrite(laserPin, HIGH);
+  //Serial.printf("ONE\n");
+  delay(oneTime);
+  digitalWrite(laserPin, LOW);
+  delay(offDelay);
 
 }
