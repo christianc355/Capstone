@@ -21,21 +21,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .module_info_crc 00000004  000d7588  000d7588  00027588  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  9 .debug_info   000f1a6f  00000000  00000000  0002758c  2**0
+  9 .debug_info   000f1a6e  00000000  00000000  0002758c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00012f84  00000000  00000000  00118ffb  2**0
+ 10 .debug_abbrev 00012f84  00000000  00000000  00118ffa  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00022099  00000000  00000000  0012bf7f  2**0
+ 11 .debug_loc    00022099  00000000  00000000  0012bf7e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_aranges 00002868  00000000  00000000  0014e018  2**0
+ 12 .debug_aranges 00002868  00000000  00000000  0014e017  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00004e50  00000000  00000000  00150880  2**0
+ 13 .debug_ranges 00004e50  00000000  00000000  0015087f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_macro  0003865c  00000000  00000000  001556d0  2**0
+ 14 .debug_macro  0003865c  00000000  00000000  001556cf  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   0002ea22  00000000  00000000  0018dd2c  2**0
+ 15 .debug_line   0002ea22  00000000  00000000  0018dd2b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    0010a206  00000000  00000000  001bc74e  2**0
+ 16 .debug_str    0010a206  00000000  00000000  001bc74d  2**0
                   CONTENTS, READONLY, DEBUGGING
  17 .debug_frame  0000d83c  00000000  00000000  002c6954  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -201,7 +201,7 @@ void click1(){
    d40b4:	f083 0301 	eor.w	r3, r3, #1
    d40b8:	7013      	strb	r3, [r2, #0]
    d40ba:	4770      	bx	lr
-   d40bc:	2003e371 	.word	0x2003e371
+   d40bc:	2003e372 	.word	0x2003e372
 
 000d40c0 <_Z6click2v>:
 
@@ -544,7 +544,7 @@ void sendAscii(byte send_array[8]){
    d4270:	d107      	bne.n	d4282 <_Z9sendAsciiPh+0x36>
       beamOne();
    d4272:	f7ff ffd3 	bl	d421c <_Z7beamOnev>
-      Serial.printf("One");
+      Serial.printf("One ");
    d4276:	f001 fd1f 	bl	d5cb8 <_Z16_fetch_usbserialv>
    d427a:	4a06      	ldr	r2, [pc, #24]	; (d4294 <_Z9sendAsciiPh+0x48>)
    d427c:	2100      	movs	r1, #0
@@ -577,7 +577,7 @@ void loop() {
    d429c:	482f      	ldr	r0, [pc, #188]	; (d435c <loop+0xc4>)
   float realTemp = bme.readTemperature();
 
-  temp.toCharArray(temp_array, 5);
+  temp.toCharArray(temp_array, 6);
   Serial.printf("Temperature: %.2f\n", realTemp);
   for(n = 0; n < 5; n++){
     for(i = 0; i < 8; i++){
@@ -612,13 +612,13 @@ void loop() {
 	void toCharArray(char *buf, unsigned int bufsize, unsigned int index=0) const
 		{getBytes((unsigned char *)buf, bufsize, index);}
    d42c4:	2300      	movs	r3, #0
-   d42c6:	2205      	movs	r2, #5
+   d42c6:	2206      	movs	r2, #6
    d42c8:	4928      	ldr	r1, [pc, #160]	; (d436c <loop+0xd4>)
    d42ca:	4827      	ldr	r0, [pc, #156]	; (d4368 <loop+0xd0>)
    d42cc:	ed8d 0a05 	vstr	s0, [sp, #20]
    d42d0:	f001 fbd2 	bl	d5a78 <_ZNK6String8getBytesEPhjj>
 
-  temp.toCharArray(temp_array, 5);
+  temp.toCharArray(temp_array, 6);
   Serial.printf("Temperature: %.2f\n", realTemp);
    d42d4:	f001 fcf0 	bl	d5cb8 <_Z16_fetch_usbserialv>
    d42d8:	ed9d 0a05 	vldr	s0, [sp, #20]
@@ -644,7 +644,7 @@ void loop() {
    d4304:	f8df 8064 	ldr.w	r8, [pc, #100]	; d436c <loop+0xd4>
   float realTemp = bme.readTemperature();
 
-  temp.toCharArray(temp_array, 5);
+  temp.toCharArray(temp_array, 6);
   Serial.printf("Temperature: %.2f\n", realTemp);
   for(n = 0; n < 5; n++){
     for(i = 0; i < 8; i++){
@@ -670,12 +670,12 @@ void loop() {
    d4332:	2100      	movs	r1, #0
    d4334:	4a10      	ldr	r2, [pc, #64]	; (d4378 <loop+0xe0>)
    d4336:	f001 f974 	bl	d5622 <_ZN5Print11printf_implEbPKcz>
-      delay(100);
-   d433a:	2064      	movs	r0, #100	; 0x64
+      delay(10);
+   d433a:	200a      	movs	r0, #10
    d433c:	f000 fe46 	bl	d4fcc <delay>
   float realTemp = bme.readTemperature();
 
-  temp.toCharArray(temp_array, 5);
+  temp.toCharArray(temp_array, 6);
   Serial.printf("Temperature: %.2f\n", realTemp);
   for(n = 0; n < 5; n++){
     for(i = 0; i < 8; i++){
@@ -685,7 +685,7 @@ void loop() {
    d4346:	e7e0      	b.n	d430a <loop+0x72>
       data[i] = temp_array[n] >> i & 0x01;
       Serial.printf("temp_array: %x data: %i i: %i n: %i\n", temp_array[n], data[i], i, n);
-      delay(100);
+      delay(10);
     }
     sendAscii(data);
    d4348:	4806      	ldr	r0, [pc, #24]	; (d4364 <loop+0xcc>)
@@ -693,14 +693,14 @@ void loop() {
   temp = String(bme.readTemperature());
   float realTemp = bme.readTemperature();
 
-  temp.toCharArray(temp_array, 5);
+  temp.toCharArray(temp_array, 6);
   Serial.printf("Temperature: %.2f\n", realTemp);
   for(n = 0; n < 5; n++){
    d434e:	6823      	ldr	r3, [r4, #0]
    d4350:	3301      	adds	r3, #1
    d4352:	6023      	str	r3, [r4, #0]
    d4354:	e7d2      	b.n	d42fc <loop+0x64>
-      delay(100);
+      delay(10);
     }
     sendAscii(data);
   }
@@ -713,9 +713,9 @@ void loop() {
    d4364:	2003e378 	.word	0x2003e378
    d4368:	2003e280 	.word	0x2003e280
    d436c:	2003e36c 	.word	0x2003e36c
-   d4370:	000d711d 	.word	0x000d711d
+   d4370:	000d711e 	.word	0x000d711e
    d4374:	2003e380 	.word	0x2003e380
-   d4378:	000d7130 	.word	0x000d7130
+   d4378:	000d7131 	.word	0x000d7131
 
 000d437c <_GLOBAL__sub_I_SystemMode>:
   //Serial.printf("ONE\n");
@@ -9241,10 +9241,10 @@ TwoWire& __fetch_global_Wire()
    d70ec:	6174 7472 5400 6d65 6570 6172 7574 6572     tart.Temperature
    d70fc:	203a 6625 000a 7953 7473 6d65 5220 6165     : %f..System Rea
    d710c:	7964 2e2e 0a2e 5a00 7265 206f 4f00 656e     dy.....Zero .One
-   d711c:	5400 6d65 6570 6172 7574 6572 203a 2e25     .Temperature: %.
-   d712c:	6632 000a 6574 706d 615f 7272 7961 203a     2f..temp_array: 
-   d713c:	7825 6420 7461 3a61 2520 2069 3a69 2520     %x data: %i i: %
-   d714c:	2069 3a6e 2520 0a69 0000 0000               i n: %i.....
+   d711c:	0020 6554 706d 7265 7461 7275 3a65 2520      .Temperature: %
+   d712c:	322e 0a66 7400 6d65 5f70 7261 6172 3a79     .2f..temp_array:
+   d713c:	2520 2078 6164 6174 203a 6925 6920 203a      %x data: %i i: 
+   d714c:	6925 6e20 203a 6925 000a 0000               %i n: %i....
 
 000d7158 <_ZTVN8particle13__SPISettingsE>:
 	...
