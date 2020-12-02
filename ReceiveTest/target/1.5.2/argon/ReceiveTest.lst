@@ -313,7 +313,7 @@ void loop() {
    d4146:	4844      	ldr	r0, [pc, #272]	; (d4258 <loop+0x114>)
   
   anodeRead = analogRead(anodePin);
-   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
+  //Serial.printf("Anode: %i\n", anodeRead); //used for testing
   
   if (i > 5){ //do not change
    d4148:	4c44      	ldr	r4, [pc, #272]	; (d425c <loop+0x118>)
@@ -333,7 +333,7 @@ void loop() {
   anodeRead = analogRead(anodePin);
    d4150:	200e      	movs	r0, #14
    d4152:	f001 f905 	bl	d5360 <analogRead>
-   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
+  //Serial.printf("Anode: %i\n", anodeRead); //used for testing
   
   if (i > 5){ //do not change
    d4156:	6822      	ldr	r2, [r4, #0]
@@ -344,7 +344,7 @@ void loop() {
   
   anodeRead = analogRead(anodePin);
    d4158:	4b42      	ldr	r3, [pc, #264]	; (d4264 <loop+0x120>)
-   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
+  //Serial.printf("Anode: %i\n", anodeRead); //used for testing
   
   if (i > 5){ //do not change
    d415a:	2a05      	cmp	r2, #5
@@ -356,7 +356,7 @@ void loop() {
   anodeRead = analogRead(anodePin);
    d415c:	6018      	str	r0, [r3, #0]
    d415e:	461e      	mov	r6, r3
-   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
+  //Serial.printf("Anode: %i\n", anodeRead); //used for testing
   
   if (i > 5){ //do not change
    i = 1; //do not change 

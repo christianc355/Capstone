@@ -67,7 +67,7 @@ void loop() {
   receiveButton.tick();
   
   anodeRead = analogRead(anodePin);
-   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
+  //Serial.printf("Anode: %i\n", anodeRead); //used for testing
   
   if (i > 5){ //do not change
    i = 1; //do not change 

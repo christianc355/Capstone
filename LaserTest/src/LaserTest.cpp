@@ -53,6 +53,9 @@ bool extraButtonState;
 
 float temp;
 
+String Temp;
+char currentTemp[9];
+
 
 void setup() {
 
