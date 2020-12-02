@@ -7,6 +7,7 @@
 
 
 SYSTEM_MODE(SEMI_AUTOMATIC);
+SYSTEM_THREAD(ENABLED);
 
 #include <OneButton.h>
 #include <Adafruit_BME280.h>
@@ -59,29 +60,35 @@ void setup() {
   button2.attachClick(click2);
   button2.setClickTicks(250);
 
+  delay(2000);
+  Serial.printf("System Ready...\n");
+
 }
 
 void loop() {
 
   temp = String(bme.readTemperature());
+  float realTemp = bme.readTemperature();
 
   temp.toCharArray(temp_array, 5);
-
-  for(i = 0; i < 8; i++){
-    data[i] = temp_array[n] >> i && 0x01;
+  Serial.printf("Temperature: %.2f\n", realTemp);
+  for(n = 0; n < 5; n++){
+    for(i = 0; i < 8; i++){
+      data[i] = temp_array[n] >> i & 0x01;
+      Serial.printf("temp_array: %x data: %i i: %i n: %i\n", temp_array[n], data[i], i, n);
+      delay(100);
+    }
+    sendAscii(data);
   }
-  n++;
-  Serial.printf("\ntemp_array: %s data: %i i: %i n: %i\n", temp_array, data, i, n);
-  sendAscii(data);
+
 }
 
 void sendAscii(byte send_array[8]){
   for(i = 0; i < 8; i++){ 
-      // send_array[i] = 0 == 1;
 
       if(send_array[i] == 0){ //laser 
       beamZero(); 
-      Serial.printf("Zero");
+      Serial.printf("Zero ");
       }
       else if(send_array[i] == 1){
       beamOne();
