@@ -60,7 +60,7 @@ void loop() {
 
 void readZero() {
   send_array[i] = 0;
-   Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
+   //Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
   i++;
   if(i > 7){
     decodeData(send_array);
@@ -70,7 +70,7 @@ void readZero() {
 
 void readOne() {
   send_array[i] = 1;
-   Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
+   //Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
   i++;
   if(i > 7){
     decodeData(send_array);
@@ -83,7 +83,8 @@ void decodeData(byte data[8]){
   for(i = 7; i >= 0; i--){
     frank = frank << 1 | data[i];
   }
-  Serial.printf("Frank: %x, %c, %s\n", frank, frank, frank);
+  Serial.printf("%c", frank);
+  //Serial.printf("Frank: %x, %c, %s\n", frank, frank, frank);
 }
 
 // void decodeData(byte decode_data[8]){ //working to decode data

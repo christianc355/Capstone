@@ -66,7 +66,7 @@ void setup() {
 
 void loop() {
 
-  temp = String(bme.readTemperature());
+  temp = String(bme.readTemperature())+"\n";
   float realTemp = bme.readTemperature();
 
   temp.toCharArray(temp_array, 6);
