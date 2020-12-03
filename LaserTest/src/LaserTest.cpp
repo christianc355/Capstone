@@ -38,9 +38,9 @@ OneButton button2(extraButtonPin, false, false);
 Adafruit_BME280 bme;
 
 
-unsigned int zeroTime = 50;
-unsigned int oneTime = 100;
-unsigned int offDelay = 10;
+unsigned int zeroTime = 500;
+unsigned int oneTime = 1000;
+unsigned int offDelay = 100;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
 unsigned int oneCurrentTime;

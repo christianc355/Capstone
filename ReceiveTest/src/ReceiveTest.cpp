@@ -25,10 +25,6 @@ const int anodePin = A5;
 const int buttonPin = D5;
 
 OneButton receiveButton(buttonPin, false, false);
-// #define bitRead(value, bit) (((value) >> (bit)) & 0x01)
-// #define bitSet(value, bit) ((value) |= (1UL << (bit)))
-// #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
-// #define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
 
 int anodeRead; 
 int triggerValue = 10;

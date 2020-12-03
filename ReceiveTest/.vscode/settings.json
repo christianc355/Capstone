@@ -6,5 +6,6 @@
         "*.ino": "cpp"
     },
     "particle.targetDevice": "Greirat",
-    "particle.targetPlatform": "argon"
+    "particle.targetPlatform": "argon",
+    "particle.firmwareVersion": "2.0.0"
 }
