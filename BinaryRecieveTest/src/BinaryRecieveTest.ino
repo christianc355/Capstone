@@ -78,6 +78,14 @@ void readOne() {
   }
 }
 
+void decodeData(byte data[8]){ 
+  byte frank = 0x00;
+  for(i = 7; i >= 0; i--){
+    frank = frank << 1 | data[i];
+  }
+  Serial.printf("Frank: %x, %c, %s\n", frank, frank, frank);
+}
+
 // void decodeData(byte decode_data[8]){ //working to decode data
 //   for(i = 0; i < 8; i++){
 //     //Serial.printf("decode_data[i] %i i: %i\n", decode_data[i], i);
@@ -86,16 +94,6 @@ void readOne() {
 //   Serial.printf("\n"); //moves to next line after above code is finished
 // }
 
-
-void decodeData(byte decode_data[8]){ //working to decode data
-  for(i = 0; i < 8; i++){
-    //Serial.printf("decode_data[i] %i i: %i\n", decode_data[i], i);
-    Serial.printf("%i", decode_data[i]);
-  }
-  Serial.printf("\n"); //moves to next line after above code is finished
-  value[i] = decode_data[n]  << i | 0x01;
-  Serial.printf("Value[i] %x\n", value[0]);
-}
 
 
 
