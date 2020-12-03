@@ -34,10 +34,10 @@ bool timerState;
 
 String temp;
 char temp_array[6];
-byte data[8];
 byte send_array[8];
 int i;
 int n;
+byte value[8];
 
 void setup() {
 
@@ -47,7 +47,6 @@ void setup() {
   Serial.printf("System Ready...\n");
 
 }
-
 
 void loop() {
 
@@ -63,22 +62,15 @@ void loop() {
       timerState = false;
       duration = endTime - startTime;
       if(duration > zeroMin && duration < zeroMax){
-        //Serial.printf("Zero");
         readZero();
-       // Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
       }
       else if(duration > oneMin && duration < oneMax){
-        //Serial.printf("One");
         readOne();
-        // Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
       }
     }
-  
-
 }
 
 void readZero() {
-
   send_array[i] = 0;
    Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
   i++;
@@ -86,11 +78,9 @@ void readZero() {
     decodeData(send_array);
     i = 0;
   }
-
 }
 
 void readOne() {
-
   send_array[i] = 1;
    Serial.printf("send_array[i]: %i i: %i\n", send_array[i], i);
   i++;
@@ -100,9 +90,50 @@ void readOne() {
   }
 }
 
-void decodeData(byte decode_data[8]){
-  for(i = 0; i < 8; i++){
-    Serial.printf("decode_data[i] %i\n", decode_data[i]);
-  }
+// void decodeData(byte decode_data[8]){ //working to decode data
+//   for(i = 0; i < 8; i++){
+//     //Serial.printf("decode_data[i] %i i: %i\n", decode_data[i], i);
+//     Serial.printf("%i", decode_data[i]);
+//   }
+//   Serial.printf("\n"); //moves to next line after above code is finished
+// }
 
+
+void decodeData(byte decode_data[8]){ //working to decode data
+  for(i = 0; i < 8; i++){
+    //Serial.printf("decode_data[i] %i i: %i\n", decode_data[i], i);
+    Serial.printf("%i", decode_data[i]);
+  }
+  Serial.printf("\n"); //moves to next line after above code is finished
+  value[i] = decode_data[1]  << i | 0x01;
+  Serial.printf("Value[i] %x\n", value[0]);
 }
+
+
+
+// void decodeData(byte decode_data[8]){ //working to decode data
+//   for(i = 0; i < 8; i++){
+//     //Serial.printf("decode_data[i] %i i: %i\n", decode_data[i], i);
+//     Serial.printf("%i", decode_data[i]);
+//   }
+//   Serial.printf("\n"); //moves to next line after above code is finished
+// }
+
+// void decodeData(byte decode_data[8]){
+//   for(n = 0; n < 5; n++){
+//     for(i = 8; i > 0; i--){
+//       temp_array[n] = decode_data[i] << i | 0x01;
+//       Serial.printf("temp_array: %x decode_data[i] %i i: %i n: %i\n", temp_array[n], decode_data[i], i , n);
+//     }
+//   }
+// }
+
+
+// void decodeData(byte decode_data[8]){
+//   for(n = 0; n < 5; n++){
+//     for(i = 8; i > 0; i--){
+//       temp_array[n] = decode_data[i] << i | 0x01;
+//       Serial.printf("temp_array: %x decode_data[i] %i i: %i n: %i\n", temp_array[n], decode_data[i], i , n);
+//     }
+//   }
+// }

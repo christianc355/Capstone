@@ -21,23 +21,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .module_info_crc 00000004  000d7588  000d7588  00027588  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  9 .debug_info   000f1a6e  00000000  00000000  0002758c  2**0
+  9 .debug_info   000f1a5d  00000000  00000000  0002758c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00012f84  00000000  00000000  00118ffa  2**0
+ 10 .debug_abbrev 00012f84  00000000  00000000  00118fe9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00022099  00000000  00000000  0012bf7e  2**0
+ 11 .debug_loc    00022099  00000000  00000000  0012bf6d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_aranges 00002868  00000000  00000000  0014e017  2**0
+ 12 .debug_aranges 00002868  00000000  00000000  0014e006  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00004e50  00000000  00000000  0015087f  2**0
+ 13 .debug_ranges 00004e50  00000000  00000000  0015086e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_macro  0003865c  00000000  00000000  001556cf  2**0
+ 14 .debug_macro  0003865c  00000000  00000000  001556be  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   0002ea22  00000000  00000000  0018dd2b  2**0
+ 15 .debug_line   0002ea22  00000000  00000000  0018dd1a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    0010a206  00000000  00000000  001bc74d  2**0
+ 16 .debug_str    0010a206  00000000  00000000  001bc73c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_frame  0000d83c  00000000  00000000  002c6954  2**2
+ 17 .debug_frame  0000d83c  00000000  00000000  002c6944  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -128,8 +128,8 @@ void module_user_init()
 }
    d4078:	bd70      	pop	{r4, r5, r6, pc}
    d407a:	bf00      	nop
-   d407c:	000d74dc 	.word	0x000d74dc
-   d4080:	000d7498 	.word	0x000d7498
+   d407c:	000d74d4 	.word	0x000d74d4
+   d4080:	000d7490 	.word	0x000d7490
 
 000d4084 <module_user_setup>:
 
@@ -319,9 +319,9 @@ class SystemClass {
    d413e:	bd10      	pop	{r4, pc}
 
 000d4140 <setup>:
+char temp_array[6];
 byte data[8];
 int i;
-int u;
 int n;
 
 void setup() {
@@ -533,7 +533,8 @@ void sendAscii(byte send_array[8]){
    d425e:	b935      	cbnz	r5, d426e <_Z9sendAsciiPh+0x22>
       beamZero(); 
    d4260:	f7ff ffc4 	bl	d41ec <_Z8beamZerov>
-      Serial.printf("Zero ");
+      //Serial.printf("Zero ");
+      Serial.printf("0");
    d4264:	f001 fd28 	bl	d5cb8 <_Z16_fetch_usbserialv>
    d4268:	4a09      	ldr	r2, [pc, #36]	; (d4290 <_Z9sendAsciiPh+0x44>)
    d426a:	4629      	mov	r1, r5
@@ -544,7 +545,8 @@ void sendAscii(byte send_array[8]){
    d4270:	d107      	bne.n	d4282 <_Z9sendAsciiPh+0x36>
       beamOne();
    d4272:	f7ff ffd3 	bl	d421c <_Z7beamOnev>
-      Serial.printf("One ");
+      //Serial.printf("One ");
+      Serial.printf("1");
    d4276:	f001 fd1f 	bl	d5cb8 <_Z16_fetch_usbserialv>
    d427a:	4a06      	ldr	r2, [pc, #24]	; (d4294 <_Z9sendAsciiPh+0x48>)
    d427c:	2100      	movs	r1, #0
@@ -562,7 +564,7 @@ void sendAscii(byte send_array[8]){
    d428a:	bf00      	nop
    d428c:	2003e374 	.word	0x2003e374
    d4290:	000d7113 	.word	0x000d7113
-   d4294:	000d7119 	.word	0x000d7119
+   d4294:	000d7226 	.word	0x000d7226
 
 000d4298 <loop>:
   delay(2000);
@@ -713,9 +715,9 @@ void loop() {
    d4364:	2003e378 	.word	0x2003e378
    d4368:	2003e280 	.word	0x2003e280
    d436c:	2003e36c 	.word	0x2003e36c
-   d4370:	000d711e 	.word	0x000d711e
+   d4370:	000d7115 	.word	0x000d7115
    d4374:	2003e380 	.word	0x2003e380
-   d4378:	000d7131 	.word	0x000d7131
+   d4378:	000d7128 	.word	0x000d7128
 
 000d437c <_GLOBAL__sub_I_SystemMode>:
   //Serial.printf("ONE\n");
@@ -863,7 +865,7 @@ String temp;
    d43f4:	2003e280 	.word	0x2003e280
    d43f8:	2003e304 	.word	0x2003e304
    d43fc:	2003e388 	.word	0x2003e388
-   d4400:	000d72c3 	.word	0x000d72c3
+   d4400:	000d72bb 	.word	0x000d72bb
    d4404:	000d58f1 	.word	0x000d58f1
 
 000d4408 <_ZNK8particle13__SPISettings7printToER5Print>:
@@ -917,12 +919,12 @@ String temp;
   }
    d4444:	b004      	add	sp, #16
    d4446:	bd70      	pop	{r4, r5, r6, pc}
-   d4448:	000d7175 	.word	0x000d7175
-   d444c:	000d72c3 	.word	0x000d72c3
-   d4450:	000d7164 	.word	0x000d7164
-   d4454:	000d716d 	.word	0x000d716d
-   d4458:	000d7171 	.word	0x000d7171
-   d445c:	000d718b 	.word	0x000d718b
+   d4448:	000d716d 	.word	0x000d716d
+   d444c:	000d72bb 	.word	0x000d72bb
+   d4450:	000d715c 	.word	0x000d715c
+   d4454:	000d7165 	.word	0x000d7165
+   d4458:	000d7169 	.word	0x000d7169
+   d445c:	000d7183 	.word	0x000d7183
 
 000d4460 <_ZN15Adafruit_BME280C1Ev>:
 /*! 
@@ -1271,7 +1273,7 @@ public:
    d45f6:	b005      	add	sp, #20
    d45f8:	bd30      	pop	{r4, r5, pc}
    d45fa:	bf00      	nop
-   d45fc:	000d7160 	.word	0x000d7160
+   d45fc:	000d7158 	.word	0x000d7158
    d4600:	0007a120 	.word	0x0007a120
 
 000d4604 <_ZN15Adafruit_BME28015readTemperatureEv>:
@@ -1472,7 +1474,7 @@ uint16_t Adafruit_BME280::read16(byte reg)
    d471a:	b005      	add	sp, #20
    d471c:	bd30      	pop	{r4, r5, pc}
    d471e:	bf00      	nop
-   d4720:	000d7160 	.word	0x000d7160
+   d4720:	000d7158 	.word	0x000d7158
    d4724:	0007a120 	.word	0x0007a120
 
 000d4728 <_ZN15Adafruit_BME2809read16_LEEh>:
@@ -1591,7 +1593,7 @@ uint8_t Adafruit_BME280::read8(byte reg) {
    d47d2:	b005      	add	sp, #20
    d47d4:	bd30      	pop	{r4, r5, pc}
    d47d6:	bf00      	nop
-   d47d8:	000d7160 	.word	0x000d7160
+   d47d8:	000d7158 	.word	0x000d7158
    d47dc:	0007a120 	.word	0x0007a120
 
 000d47e0 <_ZN15Adafruit_BME28020isReadingCalibrationEv>:
@@ -2002,7 +2004,7 @@ void Adafruit_BME280::write8(byte reg, byte value) {
 }
    d4960:	b004      	add	sp, #16
    d4962:	bd70      	pop	{r4, r5, r6, pc}
-   d4964:	000d7160 	.word	0x000d7160
+   d4964:	000d7158 	.word	0x000d7158
    d4968:	0007a120 	.word	0x0007a120
 
 000d496c <_ZN15Adafruit_BME28011setSamplingENS_11sensor_modeENS_15sensor_samplingES1_S1_NS_13sensor_filterENS_16standby_durationE>:
@@ -3552,7 +3554,7 @@ public:
    d5090:	601a      	str	r2, [r3, #0]
    d5092:	4770      	bx	lr
    d5094:	2003e3e0 	.word	0x2003e3e0
-   d5098:	000d71b4 	.word	0x000d71b4
+   d5098:	000d71ac 	.word	0x000d71ac
 
 000d509c <_ZN7TwoWireD1Ev>:
 private:
@@ -3709,7 +3711,7 @@ TwoWire::TwoWire(HAL_I2C_Interface i2c, const HAL_I2C_Config& conf)
 }
    d5110:	4620      	mov	r0, r4
    d5112:	bd10      	pop	{r4, pc}
-   d5114:	000d71e8 	.word	0x000d71e8
+   d5114:	000d71e0 	.word	0x000d71e0
 
 000d5118 <_ZN7TwoWire5beginEv>:
   HAL_I2C_Stretch_Clock(_i2c, stretch, NULL);
@@ -4025,7 +4027,7 @@ IPAddress::IPAddress()
    d522a:	4620      	mov	r0, r4
    d522c:	bd10      	pop	{r4, pc}
    d522e:	bf00      	nop
-   d5230:	000d7210 	.word	0x000d7210
+   d5230:	000d7208 	.word	0x000d7208
 
 000d5234 <_ZN9IPAddressC1ERK16_HAL_IPAddress_t>:
 
@@ -4045,7 +4047,7 @@ IPAddress::IPAddress(const HAL_IPAddress& address)
    d5250:	701a      	strb	r2, [r3, #0]
 }
    d5252:	bd10      	pop	{r4, pc}
-   d5254:	000d7210 	.word	0x000d7210
+   d5254:	000d7208 	.word	0x000d7208
 
 000d5258 <_ZN9IPAddress8set_ipv4Ehhhh>:
     return address.ipv4!=0;
@@ -4103,7 +4105,7 @@ inline spark::Logger::Logger(const char *name) :
    d528c:	601a      	str	r2, [r3, #0]
    d528e:	4770      	bx	lr
    d5290:	2003e3e8 	.word	0x2003e3e8
-   d5294:	000d728f 	.word	0x000d728f
+   d5294:	000d7287 	.word	0x000d7287
 
 000d5298 <_ZN5spark9MeshClass9listeningEv>:
     uint16_t getListenTimeout(void) {
@@ -4468,7 +4470,7 @@ class MeshClass : public NetworkClass, public MeshPublish {
    d53ba:	4620      	mov	r0, r4
    d53bc:	bd10      	pop	{r4, pc}
    d53be:	bf00      	nop
-   d53c0:	000d7308 	.word	0x000d7308
+   d53c0:	000d7300 	.word	0x000d7300
 
 000d53c4 <_GLOBAL__sub_I__ZN5spark11MeshPublish13Subscriptions20event_handler_existsEPKcPFvS3_S3_EPvN17SubscriptionScope4EnumES3_>:
 
@@ -4542,8 +4544,8 @@ MeshClass Mesh;
    d53fa:	f000 be5d 	b.w	d60b8 <__aeabi_atexit>
    d53fe:	bf00      	nop
    d5400:	2003e3ec 	.word	0x2003e3ec
-   d5404:	000d733c 	.word	0x000d733c
-   d5408:	000d7308 	.word	0x000d7308
+   d5404:	000d7334 	.word	0x000d7334
+   d5408:	000d7300 	.word	0x000d7300
    d540c:	2003e27c 	.word	0x2003e27c
    d5410:	000d53ad 	.word	0x000d53ad
 
@@ -4848,7 +4850,7 @@ class IPAddress : public Printable {
    d5550:	605a      	str	r2, [r3, #4]
    d5552:	4770      	bx	lr
    d5554:	2003e5c0 	.word	0x2003e5c0
-   d5558:	000d733c 	.word	0x000d733c
+   d5558:	000d7334 	.word	0x000d7334
 
 000d555c <_ZN5Print5writeEPKhj>:
 
@@ -5369,7 +5371,7 @@ void SPIClass::computeClockDivider(unsigned reference, unsigned targetSpeed, uin
    d572a:	7013      	strb	r3, [r2, #0]
    d572c:	bd30      	pop	{r4, r5, pc}
    d572e:	bf00      	nop
-   d5730:	000d7368 	.word	0x000d7368
+   d5730:	000d7360 	.word	0x000d7360
 
 000d5734 <_ZN8SPIClass16beginTransactionERKN8particle13__SPISettingsE>:
 {
@@ -6506,7 +6508,7 @@ USARTSerial::USARTSerial(HAL_USART_Serial serial, Ring_Buffer *rx_buffer, Ring_B
    d5b96:	4620      	mov	r0, r4
    d5b98:	bd10      	pop	{r4, pc}
    d5b9a:	bf00      	nop
-   d5b9c:	000d73a4 	.word	0x000d73a4
+   d5b9c:	000d739c 	.word	0x000d739c
 
 000d5ba0 <_ZN11USARTSerial9isEnabledEv>:
 USARTSerial::operator bool() {
@@ -6734,7 +6736,7 @@ USBSerial::USBSerial(HAL_USB_USART_Serial serial, const HAL_USB_USART_Config& co
 }
    d5c98:	4620      	mov	r0, r4
    d5c9a:	bd10      	pop	{r4, pc}
-   d5c9c:	000d73d4 	.word	0x000d73d4
+   d5c9c:	000d73cc 	.word	0x000d73cc
 
 000d5ca0 <_ZN9USBSerial5beginEl>:
 // Public methods
@@ -6956,7 +6958,7 @@ public:
    d5d74:	601a      	str	r2, [r3, #0]
    d5d76:	4770      	bx	lr
    d5d78:	2003e720 	.word	0x2003e720
-   d5d7c:	000d7404 	.word	0x000d7404
+   d5d7c:	000d73fc 	.word	0x000d73fc
 
 000d5d80 <_Z11str_reversePc>:
 
@@ -7673,7 +7675,7 @@ void analogWrite(pin_t pin, uint32_t value)
    d6062:	60e0      	str	r0, [r4, #12]
    d6064:	4620      	mov	r0, r4
    d6066:	bd70      	pop	{r4, r5, r6, pc}
-   d6068:	000d7430 	.word	0x000d7430
+   d6068:	000d7428 	.word	0x000d7428
 
 000d606c <_Z19__fetch_global_Wirev>:
 	return defaultWireConfig();
@@ -9240,119 +9242,119 @@ TwoWire& __fetch_global_Wire()
    d70dc:	6e6f 3120 6c20 6e6f 5067 6572 7373 7320     on 1 longPress s
    d70ec:	6174 7472 5400 6d65 6570 6172 7574 6572     tart.Temperature
    d70fc:	203a 6625 000a 7953 7473 6d65 5220 6165     : %f..System Rea
-   d710c:	7964 2e2e 0a2e 5a00 7265 206f 4f00 656e     dy.....Zero .One
-   d711c:	0020 6554 706d 7265 7461 7275 3a65 2520      .Temperature: %
-   d712c:	322e 0a66 7400 6d65 5f70 7261 6172 3a79     .2f..temp_array:
-   d713c:	2520 2078 6164 6174 203a 6925 6920 203a      %x data: %i i: 
-   d714c:	6925 6e20 203a 6925 000a 0000               %i n: %i....
+   d710c:	7964 2e2e 0a2e 3000 5400 6d65 6570 6172     dy.....0.Tempera
+   d711c:	7574 6572 203a 2e25 6632 000a 6574 706d     ture: %.2f..temp
+   d712c:	615f 7272 7961 203a 7825 6420 7461 3a61     _array: %x data:
+   d713c:	2520 2069 3a69 2520 2069 3a6e 2520 0a69      %i i: %i n: %i.
+   d714c:	0000 0000                                   ....
 
-000d7158 <_ZTVN8particle13__SPISettingsE>:
+000d7150 <_ZTVN8particle13__SPISettingsE>:
 	...
-   d7160:	4409 000d 6564 6166 6c75 2074 4d00 4253     .D..default .MSB
-   d7170:	4c00 4253 3c00 5053 5349 7465 6974 676e     .LSB.<SPISetting
-   d7180:	2073 6564 6166 6c75 3e74 3c00 5053 5349     s default>.<SPIS
-   d7190:	7465 6974 676e 2073 7325 6c25 2075 7325     ettings %s%lu %s
-   d71a0:	4d20 444f 2545 3e64 0000 0000                MODE%d>....
+   d7158:	4409 000d 6564 6166 6c75 2074 4d00 4253     .D..default .MSB
+   d7168:	4c00 4253 3c00 5053 5349 7465 6974 676e     .LSB.<SPISetting
+   d7178:	2073 6564 6166 6c75 3e74 3c00 5053 5349     s default>.<SPIS
+   d7188:	7465 6974 676e 2073 7325 6c25 2075 7325     ettings %s%lu %s
+   d7198:	4d20 444f 2545 3e64 0000 0000                MODE%d>....
 
-000d71ac <_ZTVN5spark13EthernetClassE>:
+000d71a4 <_ZTVN5spark13EthernetClassE>:
 	...
-   d71b4:	507d 000d 5073 000d 5069 000d 505f 000d     }P..sP..iP.._P..
-   d71c4:	5053 000d 5047 000d 503b 000d 5033 000d     SP..GP..;P..3P..
-   d71d4:	5029 000d 501f 000d 547d 000d               )P...P..}T..
+   d71ac:	507d 000d 5073 000d 5069 000d 505f 000d     }P..sP..iP.._P..
+   d71bc:	5053 000d 5047 000d 503b 000d 5033 000d     SP..GP..;P..3P..
+   d71cc:	5029 000d 501f 000d 547d 000d               )P...P..}T..
 
-000d71e0 <_ZTV7TwoWire>:
+000d71d8 <_ZTV7TwoWire>:
 	...
-   d71e8:	509d 000d 50e7 000d 50bf 000d 509f 000d     .P...P...P...P..
-   d71f8:	50c7 000d 50cf 000d 50d7 000d 50df 000d     .P...P...P...P..
+   d71e0:	509d 000d 50e7 000d 50bf 000d 509f 000d     .P...P...P...P..
+   d71f0:	50c7 000d 50cf 000d 50d7 000d 50df 000d     .P...P...P...P..
 
-000d7208 <_ZTV9IPAddress>:
+000d7200 <_ZTV9IPAddress>:
 	...
-   d7210:	51b5 000d 51a5 000d 51a7 000d 6162 6475     .Q...Q...Q..baud
-   d7220:	5300 7265 6169 006c 6553 6972 6c61 0031     .Serial.Serial1.
-   d7230:	7974 6570 7000 7261 6d61 6300 646d 6900     type.param.cmd.i
-   d7240:	0064 6e68 0064 7473 6d72 6600 6c69 0074     d.hnd.strm.filt.
-   d7250:	766c 006c 6461 4864 6e61 6c64 7265 7200     lvl.addHandler.r
-   d7260:	6d65 766f 4865 6e61 6c64 7265 6500 756e     emoveHandler.enu
-   d7270:	486d 6e61 6c64 7265 0073 534a 4e4f 7453     mHandlers.JSONSt
-   d7280:	6572 6d61 6f4c 4867 6e61 6c64 7265 6100     reamLogHandler.a
-   d7290:	7070 2500 3130 7530 0020 205d 2500 0064     pp.%010u .] .%d.
-   d72a0:	202c 2800 3a29 0020 5b20 6300 646f 2065     , .(): . [.code 
-   d72b0:	203d 2500 0069 6564 6174 6c69 2073 203d     = .%i.details = 
-   d72c0:	0d00 000a 0066 6e6c 6600 006e 6f63 6564     ....f.ln.fn.code
-   d72d0:	6400 7465 6961 006c 6f6e 656e 7400 6172     .detail.none.tra
-   d72e0:	6563 6900 666e 006f 6177 6e72 6500 7272     ce.info.warn.err
-   d72f0:	726f 7000 6e61 6369 6100 6c6c 0000 0000     or.panic.all....
+   d7208:	51b5 000d 51a5 000d 51a7 000d 6162 6475     .Q...Q...Q..baud
+   d7218:	5300 7265 6169 006c 6553 6972 6c61 0031     .Serial.Serial1.
+   d7228:	7974 6570 7000 7261 6d61 6300 646d 6900     type.param.cmd.i
+   d7238:	0064 6e68 0064 7473 6d72 6600 6c69 0074     d.hnd.strm.filt.
+   d7248:	766c 006c 6461 4864 6e61 6c64 7265 7200     lvl.addHandler.r
+   d7258:	6d65 766f 4865 6e61 6c64 7265 6500 756e     emoveHandler.enu
+   d7268:	486d 6e61 6c64 7265 0073 534a 4e4f 7453     mHandlers.JSONSt
+   d7278:	6572 6d61 6f4c 4867 6e61 6c64 7265 6100     reamLogHandler.a
+   d7288:	7070 2500 3130 7530 0020 205d 2500 0064     pp.%010u .] .%d.
+   d7298:	202c 2800 3a29 0020 5b20 6300 646f 2065     , .(): . [.code 
+   d72a8:	203d 2500 0069 6564 6174 6c69 2073 203d     = .%i.details = 
+   d72b8:	0d00 000a 0066 6e6c 6600 006e 6f63 6564     ....f.ln.fn.code
+   d72c8:	6400 7465 6961 006c 6f6e 656e 7400 6172     .detail.none.tra
+   d72d8:	6563 6900 666e 006f 6177 6e72 6500 7272     ce.info.warn.err
+   d72e8:	726f 7000 6e61 6369 6100 6c6c 0000 0000     or.panic.all....
 
-000d7300 <_ZTVN5spark9MeshClassE>:
+000d72f8 <_ZTVN5spark9MeshClassE>:
 	...
-   d7308:	52f7 000d 52ed 000d 52e3 000d 52d9 000d     .R...R...R...R..
-   d7318:	52cd 000d 52c1 000d 52b5 000d 52ad 000d     .R...R...R...R..
-   d7328:	52a3 000d 5299 000d 547d 000d               .R...R..}T..
+   d7300:	52f7 000d 52ed 000d 52e3 000d 52d9 000d     .R...R...R...R..
+   d7310:	52cd 000d 52c1 000d 52b5 000d 52ad 000d     .R...R...R...R..
+   d7320:	52a3 000d 5299 000d 547d 000d               .R...R..}T..
 
-000d7334 <_ZTVN5spark12NetworkClassE>:
+000d732c <_ZTVN5spark12NetworkClassE>:
 	...
-   d733c:	5415 000d 541f 000d 5429 000d 5433 000d     .T...T..)T..3T..
-   d734c:	543d 000d 5449 000d 5455 000d 5461 000d     =T..IT..UT..aT..
-   d735c:	5469 000d 5473 000d 547d 000d               iT..sT..}T..
+   d7334:	5415 000d 541f 000d 5429 000d 5433 000d     .T...T..)T..3T..
+   d7344:	543d 000d 5449 000d 5455 000d 5461 000d     =T..IT..UT..aT..
+   d7354:	5469 000d 5473 000d 547d 000d               iT..sT..}T..
 
-000d7368 <_ZN12_GLOBAL__N_1L14clock_divisorsE>:
-   d7368:	0800 1810 2820 3830 005a 2b25 3330 3a64     .... (08Z.%+03d:
-   d7378:	3025 7532 2500 2d59 6d25 252d 5464 4825     %02u.%Y-%m-%dT%H
-   d7388:	253a 3a4d 5325 7a25 6100 6373 6974 656d     :%M:%S%z.asctime
-   d7398:	0000 0000                                   ....
+000d7360 <_ZN12_GLOBAL__N_1L14clock_divisorsE>:
+   d7360:	0800 1810 2820 3830 005a 2b25 3330 3a64     .... (08Z.%+03d:
+   d7370:	3025 7532 2500 2d59 6d25 252d 5464 4825     %02u.%Y-%m-%dT%H
+   d7380:	253a 3a4d 5325 7a25 6100 6373 6974 656d     :%M:%S%z.asctime
+   d7390:	0000 0000                                   ....
 
-000d739c <_ZTV11USARTSerial>:
+000d7394 <_ZTV11USARTSerial>:
 	...
-   d73a4:	5af1 000d 5b41 000d 5b4f 000d 555d 000d     .Z..A[..O[..]U..
-   d73b4:	5b05 000d 5b27 000d 5b13 000d 5b3b 000d     .[..'[...[..;[..
-   d73c4:	5af3 000d 5af7 000d                         .Z...Z..
+   d739c:	5af1 000d 5b41 000d 5b4f 000d 555d 000d     .Z..A[..O[..]U..
+   d73ac:	5b05 000d 5b27 000d 5b13 000d 5b3b 000d     .[..'[...[..;[..
+   d73bc:	5af3 000d 5af7 000d                         .Z...Z..
 
-000d73cc <_ZTV9USBSerial>:
+000d73c4 <_ZTV9USBSerial>:
 	...
-   d73d4:	5bf9 000d 5c49 000d 5c57 000d 555d 000d     .[..I\..W\..]U..
-   d73e4:	5c35 000d 5bfb 000d 5c11 000d 5c43 000d     5\...[...\..C\..
-   d73f4:	5c27 000d 5bf5 000d                         '\...[..
+   d73cc:	5bf9 000d 5c49 000d 5c57 000d 555d 000d     .[..I\..W\..]U..
+   d73dc:	5c35 000d 5bfb 000d 5c11 000d 5c43 000d     5\...[...\..C\..
+   d73ec:	5c27 000d 5bf5 000d                         '\...[..
 
-000d73fc <_ZTVN5spark9WiFiClassE>:
+000d73f4 <_ZTVN5spark9WiFiClassE>:
 	...
-   d7404:	5d63 000d 5d59 000d 5d4f 000d 5d05 000d     c]..Y]..O]...]..
-   d7414:	5d43 000d 5d37 000d 5d2b 000d 5d23 000d     C]..7]..+]..#]..
-   d7424:	5d19 000d 5d0f 000d 547d 000d               .]...]..}T..
+   d73fc:	5d63 000d 5d59 000d 5d4f 000d 5d05 000d     c]..Y]..O]...]..
+   d740c:	5d43 000d 5d37 000d 5d2b 000d 5d23 000d     C]..7]..+]..#]..
+   d741c:	5d19 000d 5d0f 000d 547d 000d               .]...]..}T..
 
-000d7430 <_ZSt7nothrow>:
-   d7430:	0000 0000                                   ....
+000d7428 <_ZSt7nothrow>:
+   d7428:	0000 0000                                   ....
 
-000d7434 <__sf_fake_stdin>:
-	...
-
-000d7454 <__sf_fake_stdout>:
+000d742c <__sf_fake_stdin>:
 	...
 
-000d7474 <__sf_fake_stderr>:
-	...
-   d7494:	0043                                        C.
-
-000d7496 <link_const_variable_data_end>:
+000d744c <__sf_fake_stdout>:
 	...
 
-000d7498 <link_constructors_location>:
-   d7498:	000d437d 	.word	0x000d437d
-   d749c:	000d4abf 	.word	0x000d4abf
-   d74a0:	000d4b2d 	.word	0x000d4b2d
-   d74a4:	000d4b31 	.word	0x000d4b31
-   d74a8:	000d4fe5 	.word	0x000d4fe5
-   d74ac:	000d5089 	.word	0x000d5089
-   d74b0:	000d5289 	.word	0x000d5289
-   d74b4:	000d53c5 	.word	0x000d53c5
-   d74b8:	000d5549 	.word	0x000d5549
-   d74bc:	000d56a5 	.word	0x000d56a5
-   d74c0:	000d5aa9 	.word	0x000d5aa9
-   d74c4:	000d5add 	.word	0x000d5add
-   d74c8:	000d5d6d 	.word	0x000d5d6d
-   d74cc:	000d60fd 	.word	0x000d60fd
-   d74d0:	000d61c1 	.word	0x000d61c1
-   d74d4:	000d6245 	.word	0x000d6245
-   d74d8:	000d62c9 	.word	0x000d62c9
+000d746c <__sf_fake_stderr>:
+	...
+   d748c:	0043                                        C.
 
-000d74dc <link_constructors_end>:
-   d74dc:	00000000 	.word	0x00000000
+000d748e <link_const_variable_data_end>:
+	...
+
+000d7490 <link_constructors_location>:
+   d7490:	000d437d 	.word	0x000d437d
+   d7494:	000d4abf 	.word	0x000d4abf
+   d7498:	000d4b2d 	.word	0x000d4b2d
+   d749c:	000d4b31 	.word	0x000d4b31
+   d74a0:	000d4fe5 	.word	0x000d4fe5
+   d74a4:	000d5089 	.word	0x000d5089
+   d74a8:	000d5289 	.word	0x000d5289
+   d74ac:	000d53c5 	.word	0x000d53c5
+   d74b0:	000d5549 	.word	0x000d5549
+   d74b4:	000d56a5 	.word	0x000d56a5
+   d74b8:	000d5aa9 	.word	0x000d5aa9
+   d74bc:	000d5add 	.word	0x000d5add
+   d74c0:	000d5d6d 	.word	0x000d5d6d
+   d74c4:	000d60fd 	.word	0x000d60fd
+   d74c8:	000d61c1 	.word	0x000d61c1
+   d74cc:	000d6245 	.word	0x000d6245
+   d74d0:	000d62c9 	.word	0x000d62c9
+
+000d74d4 <link_constructors_end>:
+	...

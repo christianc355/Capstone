@@ -37,7 +37,6 @@ String temp;
 char temp_array[6];
 byte data[8];
 int i;
-int u;
 int n;
 
 void setup() {
@@ -88,11 +87,13 @@ void sendAscii(byte send_array[8]){
 
       if(send_array[i] == 0){ //laser 
       beamZero(); 
-      Serial.printf("Zero ");
+      //Serial.printf("Zero ");
+      Serial.printf("0");
       }
       else if(send_array[i] == 1){
       beamOne();
-      Serial.printf("One ");
+      //Serial.printf("One ");
+      Serial.printf("1");
       }
   }
 }
