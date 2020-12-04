@@ -11,10 +11,10 @@ const int anodePin = A5;
 
 int anodeRead;
 int triggerValue = 100;
-unsigned int zeroMin = 30;
-unsigned int zeroMax = 70;
-unsigned int oneMin = 80;
-unsigned int oneMax = 120;
+unsigned int zeroMin = 5;
+unsigned int zeroMax = 25;
+unsigned int oneMin = 30;
+unsigned int oneMax = 50;
 unsigned int startTime;
 unsigned int endTime;
 unsigned int duration;
