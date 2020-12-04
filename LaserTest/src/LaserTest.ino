@@ -22,9 +22,12 @@ OneButton button2(extraButtonPin, false, false);
 Adafruit_BME280 bme;
 
 
-unsigned int zeroTime = 15;
-unsigned int oneTime = 40;
-unsigned int offDelay = 10;
+// unsigned int zeroTime = 15;
+// unsigned int oneTime = 40;
+// unsigned int offDelay = 10;
+unsigned int zeroTime = 150; //below for OLED
+unsigned int oneTime = 400;
+unsigned int offDelay = 50;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
 unsigned int oneCurrentTime;
