@@ -22,9 +22,9 @@ OneButton button2(extraButtonPin, false, false);
 Adafruit_BME280 bme;
 
 
-unsigned int zeroTime = 500;
-unsigned int oneTime = 1000;
-unsigned int offDelay = 100;
+unsigned int zeroTime = 50;
+unsigned int oneTime = 100;
+unsigned int offDelay = 10;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
 unsigned int oneCurrentTime;
@@ -38,6 +38,7 @@ char temp_array[6];
 byte data[8];
 int i;
 int n;
+
 
 void setup() {
 
@@ -66,10 +67,10 @@ void setup() {
 
 void loop() {
 
-  temp = String(bme.readTemperature())+"\n";
+  temp = String(bme.readTemperature());
   float realTemp = bme.readTemperature();
 
-  temp.toCharArray(temp_array, 6);
+  temp.toCharArray(temp_array, 7);
   Serial.printf("Temperature: %.2f\n", realTemp);
   for(n = 0; n < 5; n++){
     for(i = 0; i < 8; i++){
@@ -79,7 +80,7 @@ void loop() {
     }
     sendAscii(data);
   }
-
+  sendReturn();
 }
 
 void sendAscii(byte send_array[8]){
@@ -97,7 +98,20 @@ void sendAscii(byte send_array[8]){
       }
   }
 }
-  
+
+void sendReturn(){
+  //00001101 \n
+  beamZero();
+  beamZero();
+  beamZero();
+  beamZero();
+  beamOne();
+  beamOne();
+  beamZero();
+  beamOne();
+
+}
+
 
 
 void click1(){
