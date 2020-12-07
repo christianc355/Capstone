@@ -9,7 +9,11 @@
 
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
+#include <Adafruit_SSD1306.h>
 
+#define OLED_RESET D4
+
+Adafruit_SSD1306 display(OLED_RESET);
 
 const int anodePin = A5;
 
@@ -17,12 +21,12 @@ const int anodePin = A5;
 
 int anodeRead; 
 int triggerValue = 100;
-unsigned int zeroTime = 150;
-unsigned int zeroMin = 50;
-unsigned int zeroMax = 250;
-unsigned int oneTime = 400;
-unsigned int oneMin = 300;
-unsigned int oneMax = 500;
+unsigned int zeroTime = 300;
+unsigned int zeroMin = 100;
+unsigned int zeroMax = 500;
+unsigned int oneTime = 800;
+unsigned int oneMin = 600;
+unsigned int oneMax = 1000;
 unsigned int startTime;
 unsigned int endTime;
 unsigned int duration;
@@ -44,8 +48,16 @@ void setup() {
   pinMode(anodePin, INPUT);
 
   pinMode(D7, OUTPUT); //for testing only
-  delay(1000); //set up time
-  Serial.printf("System Ready...");
+
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.display();
+  display.clearDisplay();
+  display.setRotation(1);
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+
+  delay(1000); //system set up time
+  Serial.printf("System Ready...\n");
 
 }
 void loop() {
@@ -54,6 +66,7 @@ void loop() {
   //Serial.printf("Anode: %i\n", anodeRead); //used for testing
   
   if (i > 5){ //do not change
+    displayAlarm();
    i = 1; //do not change 
   }
 
@@ -78,6 +91,10 @@ void loop() {
     }
   }
 
+
+}
+
+void displayAlarm() {
     bitZero = array[1];
     bitOne = array[2];
     bitTwo = array[3];
@@ -85,11 +102,15 @@ void loop() {
     bitFour = array[5];
 
   if(bitZero == 0 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 1){
-    Serial.printf("Yellow button\n");
+    display.printf("System Blue Locked");
+    display.display();
+    //Serial.printf("Yellow button\n");
     analogWrite(D7, 20); //for testing only
   }
   else if(bitZero == 1 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
-    Serial.printf("Blue button\n");
+    display.printf("System Yellow Locked");
+    display.display();
+    //Serial.printf("Blue button\n");
     analogWrite(D7, 255); //for testing only
   }
 }
