@@ -22,8 +22,8 @@ const int extraButtonPin = D6;
  // int array[] = {134, 2342, 5125, 72456, 235654};
  int i;
 
-unsigned int zeroTime = 5;
-unsigned int oneTime = 10;
+unsigned int zeroTime = 150;
+unsigned int oneTime = 400; 
 unsigned int offDelay = 10;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
@@ -61,27 +61,21 @@ unsigned int zeroLastTime;
 
 
    if(buttonState){
-     for(i = 0; i <= 4; i++){
 
    for(i = 0; i <= 4; i++){
-       if(array[i] == 0){
 
-     if(array[i] == 0){
-         beamZero();
 
-       }
-       else if(array[i] == 1){
-
+    if(array[i] == 0){
+       
        beamZero();
 
-     }
-     else if(array[i] == 1){
-         beamOne();
+    }
+    else if(array[i] == 1){
 
        beamOne();
-       }
 
      }
+
        if(i < 4){
 
          buttonState = false;
@@ -89,6 +83,7 @@ unsigned int zeroLastTime;
        }
      }
    }
+
    if(extraButtonState){
      for(i = 0; i <= 4; i++){
 
@@ -110,7 +105,7 @@ unsigned int zeroLastTime;
        }
      }
    }
-   }
+   
  }
 
 void beamZero() {
