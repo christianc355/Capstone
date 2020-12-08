@@ -35,9 +35,9 @@ const int extraButtonPin = D6;
  // int array[] = {134, 2342, 5125, 72456, 235654};
  int i;
 
-unsigned int zeroTime = 300;
-unsigned int oneTime = 800; 
-unsigned int offDelay = 100;
+unsigned int zeroTime = 100;
+unsigned int oneTime = 200; 
+unsigned int offDelay = 50;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
  unsigned int oneCurrentTime;
