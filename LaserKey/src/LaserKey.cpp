@@ -35,9 +35,15 @@ const int extraButtonPin = D6;
  // int array[] = {134, 2342, 5125, 72456, 235654};
  int i;
 
-unsigned int zeroTime = 100;
-unsigned int oneTime = 200; 
-unsigned int offDelay = 50;
+unsigned int zeroTime = 500;//works with ReceiverKeyOLED.ino
+unsigned int oneTime = 1000; 
+unsigned int offDelay = 250;
+// unsigned int zeroTime = 1000;//works with ReceiverKeyOLED.ino
+// unsigned int oneTime = 2000; 
+// unsigned int offDelay = 500;
+// unsigned int zeroTime = 100;//works with ReceiverKey.ino
+// unsigned int oneTime = 200; 
+// unsigned int offDelay = 50;
 unsigned int zeroCurrentTime;
 unsigned int zeroLastTime;
  unsigned int oneCurrentTime;
