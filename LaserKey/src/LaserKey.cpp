@@ -30,8 +30,8 @@ const int extraButtonPin = D6;
  OneButton button1(buttonPin, false, false);
  OneButton button2(extraButtonPin, false, false);
 
- int array[] = {1, 1, 0, 1, 1};
- int extraArray[] = {0, 0, 1, 0, 0};
+ int array[] = {1, 1, 0, 1, 0};
+ int extraArray[] = {0, 0, 1, 0, 1};
  // int array[] = {134, 2342, 5125, 72456, 235654};
  int i;
 

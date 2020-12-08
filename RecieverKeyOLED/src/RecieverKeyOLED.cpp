@@ -135,7 +135,7 @@ void loop() {
 
 void displayKey() {
 
-  if(bitZero == 0 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
+  if(bitZero == 0 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 1){
 
     if(hasRun == false){
     //Serial.printf("Yellow button\n");
@@ -144,7 +144,7 @@ void displayKey() {
 
     
   }
-  else if(bitZero == 1 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 1){
+  else if(bitZero == 1 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 0){
     
     if(hasRun == false){
     //Serial.printf("Blue button\n");
@@ -160,7 +160,7 @@ void unlockServo(){
     display.setCursor(0,0);
     display.printf("CODE TAKENSYSTEM\nDISARMED");
     display.display();
-    // myServo.write(100);
+    myServo.write(100);
     // delay(1000);
     analogWrite(D7, 255); //for testing only
     Serial.printf("Blue Button\n");
@@ -174,7 +174,7 @@ void lockServo(){
     display.setCursor(0,0);
     display.printf("INCORRECT CODE\nSYSTEM\nLOCKED");
     display.display();
-    // myServo.write(50);
+    myServo.write(50);
     // delay(1000);
     analogWrite(D7, 20); //for testing only
     Serial.printf("Yellow button\n");
