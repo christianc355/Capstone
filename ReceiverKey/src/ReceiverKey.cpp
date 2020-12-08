@@ -8,7 +8,7 @@
 
 /*
  * Project ReceiveTest
- * Description: Recieves button values from laser and displays to serial monitor
+ * Description: Recieves button values from laser and displays to serial monitor. Works with original anode and laser diode. 
  * Author: Christian Chavez
  * Date: December, 2020
  */
@@ -52,7 +52,6 @@ void setup() {
   pinMode(anodePin, INPUT);
 
   pinMode(D7, OUTPUT); //for testing only
-  pinMode(D5, OUTPUT);
 
   delay(1000); //set up time
   Serial.printf("System Ready...");
@@ -107,13 +106,11 @@ void displayKey() {
     if(bitZero == 0 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 1){
     Serial.printf("Yellow button\n");
     analogWrite(D7, 20); //for testing only
-    analogWrite(D5, 255); //for testing only
-
+    
   }
   else if(bitZero == 1 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 0){
     Serial.printf("Blue button\n");
     analogWrite(D7, 255); //for testing only
-    analogWrite(D5, 20);
   }
 
 }
