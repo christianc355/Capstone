@@ -35,7 +35,7 @@ Servo myServo;
 int servoRead;
 
 int anodeRead; 
-int triggerValue = 300;
+int triggerValue = 100;
 unsigned int zeroTime = 1000;
 unsigned int zeroMin = 500;
 unsigned int zeroMax = 1500;
@@ -69,6 +69,7 @@ void setup() {
   Serial.begin(9600);
 
   myServo.attach(D5);
+  //myServo.write(50);
 
   pinMode(anodePin, INPUT);
 
@@ -134,21 +135,24 @@ void loop() {
 }
 
 void displayKey() {
+  static bool isLocked;
 
   if(bitZero == 0 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 1){
 
-    if(hasRun == false){
+    if((hasRun == false)&&(isLocked == false)){
     //Serial.printf("Yellow button\n");
     lockServo();
+    isLocked = true;
     }
 
     
   }
   else if(bitZero == 1 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 0){
     
-    if(hasRun == false){
+    if((hasRun == false)&&(isLocked == false)){
     //Serial.printf("Blue button\n");
     unlockServo();
+    isLocked = false;
     }
   }
 
@@ -161,7 +165,7 @@ void unlockServo(){
     display.printf("CODE TAKENSYSTEM\nDISARMED");
     display.display();
     myServo.write(100);
-    // delay(1000);
+     delay(1000);
     analogWrite(D7, 255); //for testing only
     Serial.printf("Blue Button\n");
     hasRun = true;
@@ -175,11 +179,15 @@ void lockServo(){
     display.printf("INCORRECT CODE\nSYSTEM\nLOCKED");
     display.display();
     myServo.write(50);
-    // delay(1000);
+     delay(1000);
     analogWrite(D7, 20); //for testing only
     Serial.printf("Yellow button\n");
     hasRun = true;
 }
+
+
+
+
 
 // SYSTEM_MODE(SEMI_AUTOMATIC);
 
