@@ -267,7 +267,7 @@ class SystemClass {
    d40fa:	f001 f8e5 	bl	d52c8 <pinMode>
    pinMode(buttonPin, INPUT_PULLDOWN);
    d40fe:	2103      	movs	r1, #3
-   d4100:	2005      	movs	r0, #5
+   d4100:	2011      	movs	r0, #17
    d4102:	f001 f8e1 	bl	d52c8 <pinMode>
    pinMode(extraButtonPin, INPUT_PULLDOWN);
    pinMode(A1, OUTPUT); //used for testing 
@@ -281,7 +281,7 @@ class SystemClass {
    pinMode(buttonPin, INPUT_PULLDOWN);
    pinMode(extraButtonPin, INPUT_PULLDOWN);
    d4108:	2103      	movs	r1, #3
-   d410a:	2006      	movs	r0, #6
+   d410a:	2010      	movs	r0, #16
    d410c:	f001 f8dc 	bl	d52c8 <pinMode>
    pinMode(A1, OUTPUT); //used for testing 
    d4110:	2101      	movs	r1, #1
@@ -700,19 +700,19 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
    d4290:	f001 f898 	bl	d53c4 <__aeabi_atexit>
 
 const int laserPin = A5;
-const int buttonPin = D5;
-const int extraButtonPin = D6;
+const int buttonPin = A2;
+const int extraButtonPin = A3;
 
  OneButton button1(buttonPin, false, false);
    d4294:	4623      	mov	r3, r4
    d4296:	4622      	mov	r2, r4
-   d4298:	2105      	movs	r1, #5
+   d4298:	2111      	movs	r1, #17
    d429a:	4808      	ldr	r0, [pc, #32]	; (d42bc <_GLOBAL__sub_I_SystemMode+0x50>)
    d429c:	f000 f814 	bl	d42c8 <_ZN9OneButtonC1Eibb>
  OneButton button2(extraButtonPin, false, false);
    d42a0:	4623      	mov	r3, r4
    d42a2:	4622      	mov	r2, r4
-   d42a4:	2106      	movs	r1, #6
+   d42a4:	2110      	movs	r1, #16
    d42a6:	4806      	ldr	r0, [pc, #24]	; (d42c0 <_GLOBAL__sub_I_SystemMode+0x54>)
 
  void click2(){
@@ -721,8 +721,8 @@ const int extraButtonPin = D6;
 
    d42a8:	e8bd 4070 	ldmia.w	sp!, {r4, r5, r6, lr}
 const int laserPin = A5;
-const int buttonPin = D5;
-const int extraButtonPin = D6;
+const int buttonPin = A2;
+const int extraButtonPin = A3;
 
  OneButton button1(buttonPin, false, false);
  OneButton button2(extraButtonPin, false, false);

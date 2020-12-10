@@ -24,8 +24,8 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 #include <OneButton.h>
 
 const int laserPin = A5;
-const int buttonPin = D5;
-const int extraButtonPin = D6;
+const int buttonPin = A2;
+const int extraButtonPin = A3;
 
  OneButton button1(buttonPin, false, false);
  OneButton button2(extraButtonPin, false, false);
@@ -35,12 +35,12 @@ const int extraButtonPin = D6;
  // int array[] = {134, 2342, 5125, 72456, 235654};
  int i;
 
-// unsigned int zeroTime = 500;//works with ReceiverKeyOLED.ino
-// unsigned int oneTime = 1000; 
-// unsigned int offDelay = 250;
-unsigned int zeroTime = 1000;//works with ReceiverKeyOLED.ino
-unsigned int oneTime = 2000; 
-unsigned int offDelay = 500;
+unsigned int zeroTime = 200;//works with ReceiverKeyOLED.ino
+unsigned int oneTime = 400; 
+unsigned int offDelay = 250;
+// unsigned int zeroTime = 1000;//works with ReceiverKeyOLED.ino
+// unsigned int oneTime = 2000; 
+// unsigned int offDelay = 500;
 // unsigned int zeroTime = 100;//works with ReceiverKey.ino
 // unsigned int oneTime = 200; 
 // unsigned int offDelay = 50;

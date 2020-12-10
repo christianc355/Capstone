@@ -24,12 +24,12 @@ int servoRead;
 
 int anodeRead; 
 int triggerValue = 100;
-unsigned int zeroTime = 1000;
-unsigned int zeroMin = 500;
-unsigned int zeroMax = 1500;
-unsigned int oneTime = 2000;
-unsigned int oneMin = 1600;
-unsigned int oneMax = 2500;
+unsigned int zeroTime = 200;
+unsigned int zeroMin = 100;
+unsigned int zeroMax = 300;
+unsigned int oneTime = 400;
+unsigned int oneMin = 320;
+unsigned int oneMax = 500;
 // unsigned int zeroTime = 500;
 // unsigned int zeroMin = 250;
 // unsigned int zeroMax = 750;
@@ -57,7 +57,7 @@ void setup() {
   Serial.begin(9600);
 
   myServo.attach(D5);
-  //myServo.write(50);
+  myServo.write(150);
 
   pinMode(anodePin, INPUT);
 
@@ -73,7 +73,7 @@ void setup() {
 
   delay(1000); //set up time
   Serial.printf("System Ready...");
-  display.printf("ALARM\nSYSTEM\nREADY");
+  display.printf("SYSTEM\nREADY\n*LOCKED*");
   display.display();
 
 }
@@ -81,7 +81,7 @@ void loop() {
 
 
   anodeRead = analogRead(anodePin);
-  //Serial.printf("Anode: %i\n", anodeRead); //used for testing
+ // Serial.printf("Anode: %i\n", anodeRead); //used for testing
 
   
   if (i == 5){
@@ -123,24 +123,23 @@ void loop() {
 }
 
 void displayKey() {
-  static bool isLocked;
+
 
   if(bitZero == 0 && bitOne == 0 && bitTwo == 1 && bitThree == 0 && bitFour == 1){
 
-    if((hasRun == false)&&(isLocked == false)){
+    if((hasRun == false)){
     //Serial.printf("Yellow button\n");
     lockServo();
-    isLocked = true;
     }
 
     
   }
   else if(bitZero == 1 && bitOne == 1 && bitTwo == 0 && bitThree == 1 && bitFour == 0){
     
-    if((hasRun == false)&&(isLocked == false)){
+    if((hasRun == false)){
     //Serial.printf("Blue button\n");
     unlockServo();
-    isLocked = false;
+
     }
   }
 
@@ -152,7 +151,7 @@ void unlockServo(){
     display.setCursor(0,0);
     display.printf("CODE TAKENSYSTEM\nDISARMED");
     display.display();
-    myServo.write(100);
+    myServo.write(0);
      delay(1000);
     analogWrite(D7, 255); //for testing only
     Serial.printf("Blue Button\n");
@@ -166,7 +165,7 @@ void lockServo(){
     display.setCursor(0,0);
     display.printf("INCORRECT CODE\nSYSTEM\nLOCKED");
     display.display();
-    myServo.write(50);
+    myServo.write(150);
      delay(1000);
     analogWrite(D7, 20); //for testing only
     Serial.printf("Yellow button\n");
