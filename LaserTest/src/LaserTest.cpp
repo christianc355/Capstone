@@ -28,6 +28,11 @@ SYSTEM_THREAD(ENABLED);
 
 #include <OneButton.h>
 #include <Adafruit_BME280.h>
+#include <Adafruit_SSD1306.h>
+
+#define OLED_RESET D4
+
+Adafruit_SSD1306 display(OLED_RESET);
 
 
 const int laserPin = A5;
@@ -80,8 +85,20 @@ void setup() {
   button2.attachClick(click2);
   button2.setClickTicks(250);
 
-  delay(2000);
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.display();
+
+  display.clearDisplay();
+  // display.setRotation(1);
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+
+  delay(1000);
+  display.printf("SYSTEM\nREADY...\n");
+  display.display();
   Serial.printf("System Ready...\n");
+  delay(3000);
+
 
 }
 
@@ -89,6 +106,11 @@ void loop() {
 
   temp = String(bme.readTemperature());
   float realTemp = bme.readTemperature();
+  display.clearDisplay();
+  display.setCursor(0,0);
+  display.display();
+  display.printf("SENDING\nDATA:\n%.2f%cC",realTemp, char(247));
+  display.display();
 
   temp.toCharArray(temp_array, 7);
   Serial.printf("Temperature: %.2f\n", realTemp);

@@ -69,7 +69,11 @@ void setup() {
   display.setTextColor(WHITE);
 
   delay(1000); //system set up time
+  display.printf("SYSTEM\nREADY...\n");
+  display.display();
   Serial.printf("System Ready...\n");
+  delay(3000);
+  display.clearDisplay();
 
 }
 
@@ -135,7 +139,7 @@ void decodeData(byte data[8]){
     Serial.printf("° Celsius\n");
     display.clearDisplay();
     display.setCursor(0,0);
-    display.printf("%c C:\n", char(247));
+    display.printf("TEMP\nIN %cC:\n", char(247));
     display.display();
   }
   else{
