@@ -57,7 +57,7 @@ void setup() {
   Serial.begin(9600);
 
   myServo.attach(D5);
-  myServo.write(150);
+  myServo.write(100);
 
   pinMode(anodePin, INPUT);
 
@@ -165,7 +165,7 @@ void lockServo(){
     display.setCursor(0,0);
     display.printf("INCORRECT CODE\nSYSTEM\nLOCKED");
     display.display();
-    myServo.write(150);
+    myServo.write(100);
      delay(1000);
     analogWrite(D7, 20); //for testing only
     Serial.printf("Yellow button\n");

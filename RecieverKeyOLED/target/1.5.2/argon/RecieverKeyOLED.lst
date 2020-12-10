@@ -286,9 +286,9 @@ void setup() {
    d4100:	2105      	movs	r1, #5
    d4102:	4628      	mov	r0, r5
    d4104:	f001 fd04 	bl	d5b10 <_ZN5Servo6attachEtttss>
-  myServo.write(150);
+  myServo.write(100);
    d4108:	4628      	mov	r0, r5
-   d410a:	2196      	movs	r1, #150	; 0x96
+   d410a:	2164      	movs	r1, #100	; 0x64
    d410c:	f001 fcc1 	bl	d5a92 <_ZN5Servo5writeEi>
 
   pinMode(anodePin, INPUT);
@@ -302,7 +302,7 @@ void setup() {
   Serial.begin(9600);
 
   myServo.attach(D5);
-  myServo.write(150);
+  myServo.write(100);
 
   pinMode(anodePin, INPUT);
    d4116:	f002 f809 	bl	d612c <pinMode>
@@ -438,8 +438,8 @@ void lockServo(){
     display.display();
    d41fc:	4620      	mov	r0, r4
    d41fe:	f000 fe07 	bl	d4e10 <_ZN16Adafruit_SSD13067displayEv>
-    myServo.write(150);
-   d4202:	2196      	movs	r1, #150	; 0x96
+    myServo.write(100);
+   d4202:	2164      	movs	r1, #100	; 0x64
    d4204:	480b      	ldr	r0, [pc, #44]	; (d4234 <_Z9lockServov+0x54>)
    d4206:	f001 fc44 	bl	d5a92 <_ZN5Servo5writeEi>
      delay(1000);
@@ -746,7 +746,7 @@ inline system_tick_t millis(void) { return HAL_Timer_Get_Milli_Seconds(); }
 	...
 
 000d43fc <_GLOBAL__sub_I_SystemMode>:
-    myServo.write(150);
+    myServo.write(100);
      delay(1000);
     analogWrite(D7, 20); //for testing only
     Serial.printf("Yellow button\n");
@@ -832,7 +832,7 @@ const int anodePin = A5;
 
 Servo myServo;
    d443a:	4807      	ldr	r0, [pc, #28]	; (d4458 <_GLOBAL__sub_I_SystemMode+0x5c>)
-    myServo.write(150);
+    myServo.write(100);
      delay(1000);
     analogWrite(D7, 20); //for testing only
     Serial.printf("Yellow button\n");
