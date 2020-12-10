@@ -8,6 +8,12 @@
 SYSTEM_MODE(SEMI_AUTOMATIC);
 //revert to here before OLED
 
+#include <Adafruit_SSD1306.h>
+
+#define OLED_RESET D4
+
+Adafruit_SSD1306 display(OLED_RESET);
+
 #include <OneButton.h>
 
 const int laserPin = A5;
@@ -22,9 +28,9 @@ const int extraButtonPin = A3;
  // int array[] = {134, 2342, 5125, 72456, 235654};
  int i;
 
-unsigned int zeroTime = 200;//works with ReceiverKeyOLED.ino
-unsigned int oneTime = 400; 
-unsigned int offDelay = 250;
+unsigned int zeroTime = 10;//works with ReceiverKeyOLED.ino
+unsigned int oneTime = 20; 
+unsigned int offDelay = 50;
 // unsigned int zeroTime = 1000;//works with ReceiverKeyOLED.ino
 // unsigned int oneTime = 2000; 
 // unsigned int offDelay = 500;
@@ -56,6 +62,20 @@ unsigned int zeroLastTime;
    button2.attachClick(click2);
    button2.setClickTicks(250);
 
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.display();
+  display.clearDisplay();
+  display.setCursor(0,0);
+  // display.setRotation(1);
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  delay(1000);
+
+
+  Serial.printf("System Ready...");
+  display.printf("LASER\nSYSTEM\nREADY...\n");
+  display.display();
+
  }
 
  void loop() {
@@ -67,6 +87,10 @@ unsigned int zeroLastTime;
 
 
    if(buttonState){
+     display.clearDisplay();
+     display.setCursor(0,0);
+     display.printf("SENDING\nCONFIRMED\nDATA...");
+     display.display();
 
    for(i = 0; i <= 4; i++){
 
@@ -84,13 +108,23 @@ unsigned int zeroLastTime;
 
        if(i < 4){
 
-         buttonState = false;
-
+        buttonState = false;
+       }
+       if(i == 4){
+        display.clearDisplay();
+        display.setCursor(0,0);
+        display.printf("DATA\nSENT");
+        display.display();
        }
      }
    }
 
    if(extraButtonState){
+     display.clearDisplay();
+     display.setCursor(0,0);
+     display.printf("SENDING\nINVALID\nDATA...");
+     display.display();
+
      for(i = 0; i <= 4; i++){
 
        if(extraArray[i] == 0){
@@ -109,6 +143,12 @@ unsigned int zeroLastTime;
          extraButtonState = false;
 
        }
+       if(i == 4){
+        display.clearDisplay();
+        display.setCursor(0,0);
+        display.printf("DATA\nSENT");
+        display.display();
+       }       
      }
    }
    

@@ -36,12 +36,12 @@ int servoRead;
 
 int anodeRead; 
 int triggerValue = 100;
-unsigned int zeroTime = 200;
-unsigned int zeroMin = 100;
-unsigned int zeroMax = 300;
-unsigned int oneTime = 400;
-unsigned int oneMin = 320;
-unsigned int oneMax = 500;
+unsigned int zeroTime = 10;
+unsigned int zeroMin = 5;
+unsigned int zeroMax = 14;
+unsigned int oneTime = 20;
+unsigned int oneMin = 16;
+unsigned int oneMax = 25;
 // unsigned int zeroTime = 500;
 // unsigned int zeroMin = 250;
 // unsigned int zeroMax = 750;
@@ -80,6 +80,7 @@ void setup() {
   display.clearDisplay();
   // display.setRotation(1);
   display.setTextSize(2);
+  
   display.setTextColor(WHITE);
 
 

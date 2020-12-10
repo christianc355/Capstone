@@ -31,11 +31,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  13 .debug_macro  00039822  00000000  00000000  00150f5b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_line   0002ee2e  00000000  00000000  0018a77d  2**0
+ 14 .debug_line   0002ee31  00000000  00000000  0018a77d  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    001094c0  00000000  00000000  001b95ab  2**0
+ 15 .debug_str    001094c0  00000000  00000000  001b95ae  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_frame  0000d0ac  00000000  00000000  002c2a6c  2**2
+ 16 .debug_frame  0000d0ac  00000000  00000000  002c2a70  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -328,6 +328,7 @@ void setup() {
    d4138:	4620      	mov	r0, r4
    d413a:	2102      	movs	r1, #2
    d413c:	f000 fb46 	bl	d47cc <_ZN12Adafruit_GFX11setTextSizeEh>
+  
   display.setTextColor(WHITE);
    d4140:	2101      	movs	r1, #1
    d4142:	4620      	mov	r0, r4
